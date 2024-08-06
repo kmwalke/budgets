@@ -1,0 +1,89 @@
+version: 3
+
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: cimg/ruby:3.3.4
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: ""
+      RAILS_ENV: test
+      NODE_ENV: test
+      NODE_OPTIONS: --openssl-legacy-provider
+  postgres: &postgres
+    image: cimg/postgres:13.8
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: scraps-test
+      POSTGRES_PASSWORD: ""
+
+jobs:
+  build:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: gem install bundler
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      # bundle cache
+      - restore_cache:
+          keys:
+            - budgets-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - budgets-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
+      - save_cache:
+          key: budgets-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+  test:
+    parallelism: 1
+    docker:
+      - *default_docker_ruby_executor
+      - *postgres
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - budgets-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - budgets-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
+          name: Run Tests
+          command: bundle exec rspec
+      #            mkdir /tmp/test-results
+      #            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      #            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
