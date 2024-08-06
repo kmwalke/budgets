@@ -1,0 +1,2 @@
+class MuniType < ApplicationRecord
+end

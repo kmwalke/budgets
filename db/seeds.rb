@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+MuniType.destroy_all
+
+MuniType.create(name: 'City')
+MuniType.create(name: 'County')
+MuniType.create(name: 'State')
+MuniType.create(name: 'Fed')

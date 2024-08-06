@@ -1,0 +1,17 @@
+inherit_from: .rubocop_hound.yml
+
+require:
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
