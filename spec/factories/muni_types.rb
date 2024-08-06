@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :muni_type do
-    name { "MyString" }
+    sequence(:name) { |n| "MuniType_#{n}" }
   end
 end
