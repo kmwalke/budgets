@@ -1,0 +1,9 @@
+haml:
+  enabled: false
+
+rubocop:
+  version: 1.65.1
+  config_file: .rubocop_hound.yml
+
+scss:
+  enabled: false
