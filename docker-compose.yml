@@ -1,0 +1,41 @@
+x-budgets-common:
+  &budgets-common
+  build:
+    context: .
+    args:
+      USERNAME: $USER
+      UID: ${USER_ID:-0}
+      GID: ${GROUP_ID:-0}
+  volumes:
+    - .:/app
+    - budgets-gems:/gems
+    - /app/node_modules
+  stdin_open: true # docker run -i
+  tty: true        # docker run -t
+  environment:
+    DB_DEV: budgets-development
+    DB_HOST: db
+    DB_TEST: budgets-test
+    DB_USERNAME: postgres
+
+
+services:
+  web:
+    << : *budgets-common
+    command: "./script/start-dev.sh"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11.5
+    volumes:
+      - budgets-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  budgets-data:
+  budgets-gems:
