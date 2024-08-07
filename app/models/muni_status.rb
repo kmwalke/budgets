@@ -1,5 +1,7 @@
 class MuniStatus < ApplicationRecord
-  STATUSES = %w[Draft Live].freeze
+  DRAFT = 'draft'.freeze
+  LIVE = 'live'.freeze
+  STATUSES = [DRAFT LIVE].freeze
 
   validates :name, presence: true, uniqueness: true
 end
