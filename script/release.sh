@@ -5,7 +5,7 @@
 # In that case, we must skip the migration and do it in postdeploy step
 
 # This command should return 0 on properly setup DB
-psql $DATABASE_URL -c 'SELECT id FROM users LIMIT 1'
+psql $DATABASE_URL -c 'SELECT name FROM muni_types LIMIT 1'
 
 if [ $? == 0 ]; then
   echo "Running Rails DB migrations..."
