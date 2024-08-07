@@ -7,6 +7,10 @@ require:
   - rubocop-rspec
   - rubocop-rspec_rails
 
+Metrics/BlockLength:
+  Exclude:
+    - 'db/schema.rb'
+
 Rails/I18nLocaleTexts:
   Enabled: false
 
