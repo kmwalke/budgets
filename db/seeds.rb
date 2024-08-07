@@ -8,9 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-MuniType.destroy_all
 
-MuniType.create(name: 'City')
-MuniType.create(name: 'County')
-MuniType.create(name: 'State')
-MuniType.create(name: 'Fed')
+MuniType.TYPES.each do |type|
+  MuniType.find_or_create_by!(name: type)
+end
+
+MuniStatus.STATUSES.each do |status|
+  MuniStatus.find_or_create_by!(name: status)
+end

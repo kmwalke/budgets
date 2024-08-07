@@ -10,12 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_06_231929) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_002530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "muni_types", force: :cascade do |t|
-    t.string "name"
+  create_table "departments", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "municipality_id", null: false
+    t.integer "expense_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer "year", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "department_id", null: false
+    t.integer "expense_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "muni_statuses", id: false, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "unique_statuses", unique: true
+  end
+
+  create_table "muni_types", id: false, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "unique_muni_types", unique: true
+  end
+
+  create_table "municipalities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.integer "expense_id", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
