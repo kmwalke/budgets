@@ -7,7 +7,7 @@ require:
   - rubocop-rspec
   - rubocop-rspec_rails
 
-Metrics/BlockLength:
+AllCops:
   Exclude:
     - 'db/schema.rb'
 
