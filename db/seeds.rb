@@ -8,10 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-MuniType.TYPES.each do |type|
+MuniType::TYPES.each do |type|
   MuniType.find_or_create_by!(name: type)
 end
 
-MuniStatus.STATUSES.each do |status|
+MuniStatus::STATUSES.each do |status|
   MuniStatus.find_or_create_by!(name: status)
 end

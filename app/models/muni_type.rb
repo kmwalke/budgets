@@ -1,5 +1,3 @@
 class MuniType < ApplicationRecord
-  def self.TYPES
-    %w[City County State Fed]
-  end
+  TYPES = %w[City County State Fed].freeze
 end

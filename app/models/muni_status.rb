@@ -1,5 +1,3 @@
 class MuniStatus < ApplicationRecord
-  def self.STATUSES
-    %w[Draft Live]
-  end
+  STATUSES = %w[Draft Live].freeze
 end
