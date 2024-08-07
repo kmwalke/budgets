@@ -17,6 +17,8 @@ x-budgets-common:
     DB_HOST: db
     DB_TEST: budgets-test
     DB_USERNAME: postgres
+    SMARTY_AUTH_ID: ${SMARTY_AUTH_ID}
+    SMARTY_AUTH_TOKEN: ${SMARTY_AUTH_TOKEN}
 
 
 services:
