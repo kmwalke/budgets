@@ -1,5 +1,5 @@
 class MuniStatus < ApplicationRecord
   def self.STATUSES
-    ['Draft', 'Live']
+    %w[Draft Live]
   end
 end

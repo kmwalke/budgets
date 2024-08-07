@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe MuniStatus, type: :model do
+RSpec.describe MuniStatus do
   pending "add some examples to (or delete) #{__FILE__}"
 end

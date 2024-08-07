@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-
 MuniType.TYPES.each do |type|
   MuniType.find_or_create_by!(name: type)
 end
