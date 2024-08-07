@@ -10,12 +10,12 @@ require:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/InverseOf:
+  Enabled: false
+
 Rails/RedundantPresenceValidationOnBelongsTo:
   Enabled: false
 
 RSpec/IndexedLet:
-  Enabled: false
-
-RSpec/InverseOf:
   Enabled: false
 
