@@ -13,10 +13,10 @@ x-budgets-common:
   stdin_open: true # docker run -i
   tty: true        # docker run -t
   environment:
-    DB_DEV: budgets-development
-    DB_HOST: db
-    DB_TEST: budgets-test
-    DB_USERNAME: postgres
+    DB_DEV: ${DB_DEV}
+    DB_HOST: ${DB_HOST}
+    DB_TEST: ${DB_TEST}
+    DB_USERNAME: ${DB_USERNAME}
     SMARTY_AUTH_ID: ${SMARTY_AUTH_ID}
     SMARTY_AUTH_TOKEN: ${SMARTY_AUTH_TOKEN}
 
