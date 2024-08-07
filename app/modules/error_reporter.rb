@@ -1,8 +1,6 @@
 module ErrorReporter
-
   def report_error(error: nil, handled: nil, severity: nil, context: nil, source: nil)
-
-    back_trace_string = ""
+    back_trace_string = ''
     error.backtrace.each do |l|
       back_trace_string << "\n #{l}"
     end

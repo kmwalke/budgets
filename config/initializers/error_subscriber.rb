@@ -4,7 +4,7 @@ end
 
 class ErrorSubscriber
   def report(error, handled:, severity:, context:, source: nil)
-    ErrorReporter.report_error(error: error, handled: handled, severity: severity, context: context, source: source)
+    ErrorReporter.report_error(error:, handled:, severity:, context:, source:)
   end
 end
 Rails.error.subscribe(ErrorSubscriber.new)

@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def catch_errors
-    Rails.error.record do
-      yield
-    end
+  def catch_errors(&)
+    Rails.error.record(&)
   end
 end
