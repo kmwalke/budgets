@@ -16,3 +16,6 @@ Rails/RedundantPresenceValidationOnBelongsTo:
 RSpec/IndexedLet:
   Enabled: false
 
+RSpec/InverseOf:
+  Enabled: false
+

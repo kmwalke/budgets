@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Municipality do
-  let!(:municipality) { create(:municipality) }
+  let(:municipality) { create(:municipality) }
 
   it 'requires a name' do
     expect { create(:municipality, name: '') }.to raise_error(ActiveRecord::RecordInvalid)

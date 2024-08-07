@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Expense do
-  let!(:expense) { create(:expense) }
+  let(:expense) { create(:expense) }
 
   it 'requires a year' do
     expect { create(:expense, year: '') }.to raise_error(ActiveRecord::RecordInvalid)

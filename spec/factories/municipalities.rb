@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Muni_#{n}" }
     expense
     muni_status
-    muni_type 
+    muni_type
   end
 end
