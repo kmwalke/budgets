@@ -5,8 +5,12 @@ require:
   - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/InverseOf:
   Enabled: false
 
 Rails/RedundantPresenceValidationOnBelongsTo:

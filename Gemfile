@@ -28,10 +28,13 @@ end
 group :development do
   gem 'listen'
   gem 'rubocop'
+  gem 'rubocop-capybara'
   gem 'rubocop-daemon', require: false
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
