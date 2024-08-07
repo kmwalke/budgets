@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_07_002530) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_182627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "app_errors", force: :cascade do |t|
+    t.string "ae_error"
+    t.text "ae_backtrace"
+    t.string "ae_severity"
+    t.string "ae_handled"
+    t.string "ae_source"
+    t.string "ae_context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
