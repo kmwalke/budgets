@@ -37,21 +37,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_002530) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "muni_statuses", id: false, force: :cascade do |t|
-    t.string "name", null: false
+  create_table "muni_statuses", primary_key: "name", id: :string, force: :cascade do |t|
     t.index ["name"], name: "unique_statuses", unique: true
   end
 
-  create_table "muni_types", id: false, force: :cascade do |t|
-    t.string "name", null: false
+  create_table "muni_types", primary_key: "name", id: :string, force: :cascade do |t|
     t.index ["name"], name: "unique_muni_types", unique: true
   end
 
   create_table "municipalities", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
+    t.string "muni_type", null: false
     t.integer "expense_id", null: false
-    t.string "status", null: false
+    t.string "muni_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

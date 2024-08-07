@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :municipality do
-    name { 'MyString' }
-    type { '' }
-    expense_id { 1 }
-    status { 'MyString' }
+    sequence(:name) { |n| "Muni_#{n}" }
+    expense
+    muni_status
+    muni_type 
   end
 end

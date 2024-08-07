@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :muni_status do
-    name { 'MyString' }
+    sequence(:name) { |n| "MuniStatus_#{n}" }
   end
 end
