@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Budget, type: :model do
+RSpec.describe Budget do
   let!(:budget) { create(:budget) }
 
   it 'requires a year' do

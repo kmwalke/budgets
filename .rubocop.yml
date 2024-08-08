@@ -13,6 +13,11 @@ AllCops:
     - 'db/schema.rb'
     - 'bin/*'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'Guardfile'
+    - 'config/environments/*'
+
 Rails/I18nLocaleTexts:
   Enabled: false
 

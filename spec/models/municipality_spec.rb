@@ -16,7 +16,7 @@ RSpec.describe Municipality do
   end
 
   it 'defaults status to draft' do
-    expect(Municipality.create(name: 'a', type: MuniType::STATE).status).to eq(MuniStatus::DRAFT)
+    expect(described_class.create(name: 'a', type: MuniType::STATE).status).to eq(MuniStatus::DRAFT)
   end
 
   it 'has departments' do
