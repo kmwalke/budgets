@@ -30,6 +30,6 @@ RUN echo " \
   " >> ~/.bashrc
 
 
-RUN gem install bundler
+RUN gem install bundler -v=2.5.6
 
 ENTRYPOINT [ "./script/docker-entrypoint.sh" ]
