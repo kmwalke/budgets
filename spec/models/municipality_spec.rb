@@ -18,4 +18,8 @@ RSpec.describe Municipality do
   it 'defaults status to draft' do
     expect(Municipality.create(name: 'a', type: MuniType::STATE).status).to eq(MuniStatus::DRAFT)
   end
+
+  it 'has departments' do
+    expect(municipality.departments).to be_a(ActiveRecord::Associations::CollectionProxy)
+  end
 end

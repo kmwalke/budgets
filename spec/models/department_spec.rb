@@ -10,4 +10,8 @@ RSpec.describe Department do
   it 'has budgets' do
     expect(department.budgets).to be_a(ActiveRecord::Associations::CollectionProxy)
   end
+
+  it 'has a municipality' do
+    expect(department.municipality).to be_a(Municipality)
+  end
 end
