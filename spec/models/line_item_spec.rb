@@ -7,11 +7,11 @@ RSpec.describe LineItem do
     expect { create(:line_item, name: '') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it 'has a department' do
-    expect(line_item.department).to be_a(Department)
+  it 'requires a amount' do
+    expect { create(:line_item, amount: '') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it 'has an expense' do
-    expect(line_item.expense).to be_a(Expense)
+  it 'has a budget' do
+    expect(line_item.budget).to be_a(Budget)
   end
 end

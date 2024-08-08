@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :expense do
+  factory :budget do
     year { 2024 }
-    amount { 30_000 }
+    department
   end
 end

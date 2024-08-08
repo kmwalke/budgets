@@ -1,0 +1,2 @@
+class City < Municipality
+end

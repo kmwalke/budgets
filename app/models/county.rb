@@ -1,0 +1,2 @@
+class County < Municipality
+end
