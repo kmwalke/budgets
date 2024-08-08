@@ -22,7 +22,7 @@ if Rails.env.development?
 
     10.times do |j|
       county = County.find_or_create_by!(
-        name: "County_#{i}",
+        name: "County_#{j}",
         status: MuniStatus::LIVE
       )
     end
