@@ -12,56 +12,57 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_07_182627) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'app_errors', force: :cascade do |t|
-    t.string 'ae_error'
-    t.text 'ae_backtrace'
-    t.string 'ae_severity'
-    t.string 'ae_handled'
-    t.string 'ae_source'
-    t.string 'ae_context'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "app_errors", force: :cascade do |t|
+    t.string "ae_error"
+    t.text "ae_backtrace"
+    t.string "ae_severity"
+    t.string "ae_handled"
+    t.string "ae_source"
+    t.string "ae_context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'departments', force: :cascade do |t|
-    t.string 'name', null: false
-    t.integer 'municipality_id', null: false
-    t.integer 'expense_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "departments", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "municipality_id", null: false
+    t.integer "expense_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'expenses', force: :cascade do |t|
-    t.integer 'year', null: false
-    t.integer 'amount', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "expenses", force: :cascade do |t|
+    t.integer "year", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'line_items', force: :cascade do |t|
-    t.string 'name', null: false
-    t.integer 'department_id', null: false
-    t.integer 'expense_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "line_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "department_id", null: false
+    t.integer "expense_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'muni_statuses', primary_key: 'name', id: :string, force: :cascade do |t|
-    t.index ['name'], name: 'unique_statuses', unique: true
+  create_table "muni_statuses", primary_key: "name", id: :string, force: :cascade do |t|
+    t.index ["name"], name: "unique_statuses", unique: true
   end
 
-  create_table 'muni_types', primary_key: 'name', id: :string, force: :cascade do |t|
-    t.index ['name'], name: 'unique_muni_types', unique: true
+  create_table "muni_types", primary_key: "name", id: :string, force: :cascade do |t|
+    t.index ["name"], name: "unique_muni_types", unique: true
   end
 
-  create_table 'municipalities', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'muni_type', null: false
-    t.integer 'expense_id', null: false
-    t.string 'muni_status', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "municipalities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.integer "expense_id", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
 end

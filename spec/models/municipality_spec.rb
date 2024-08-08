@@ -8,10 +8,14 @@ RSpec.describe Municipality do
   end
 
   it 'requires a type' do
-    expect { create(:municipality, muni_type: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:municipality, type: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it 'requires a status' do
-    expect { create(:municipality, muni_status: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:municipality, status: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
+  it 'requires live municipalities to have an expense' do
+    expect(true).to be_nil
   end
 end
