@@ -59,8 +59,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_182627) do
   create_table "municipalities", force: :cascade do |t|
     t.string "name", null: false
     t.string "type", null: false
-    t.integer "expense_id", null: false
-    t.string "status", null: false
+    t.integer "expense_id"
+    t.string "status", default: "draft", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

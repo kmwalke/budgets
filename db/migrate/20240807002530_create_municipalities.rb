@@ -4,7 +4,7 @@ class CreateMunicipalities < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :type, null: false
       t.integer :expense_id
-      t.string :status, null: false
+      t.string :status, null: false, default: MuniStatus::DRAFT
 
       t.timestamps
     end
