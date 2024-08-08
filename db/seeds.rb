@@ -18,6 +18,13 @@ end
 
 if Rails.env.development?
   10.times do |i|
-    Municipality.find_or_create_by!(name: "State_#{i}", status: MuniStatus::LIVE, type: MuniType::STATE)
+    state = State.find_or_create_by!(name: "State_#{i}", status: MuniStatus::LIVE)
+
+    10.times do |j|
+      county = County.find_or_create_by!(
+        name: "County_#{j}",
+        status: MuniStatus::LIVE
+      )
+    end
   end
 end
