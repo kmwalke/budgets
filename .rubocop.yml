@@ -8,8 +8,10 @@ require:
   - rubocop-rspec_rails
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/schema.rb'
+    - 'bin/*'
 
 Rails/I18nLocaleTexts:
   Enabled: false
