@@ -8,10 +8,6 @@ RSpec.describe LineItem do
   end
 
   it 'has a department' do
-    expect(line_item.department).to be_a(Department)
-  end
-
-  it 'has an expense' do
-    expect(line_item.expense).to be_a(Expense)
+    expect(line_item.budget).to be_a(Budget)
   end
 end

@@ -18,8 +18,4 @@ RSpec.describe Municipality do
   it 'defaults status to draft' do
     expect(Municipality.create(name: 'a', type: MuniType::STATE).status).to eq(MuniStatus::DRAFT)
   end
-
-  it 'requires live municipalities to have an expense' do
-    expect(true).to be_nil
-  end
 end

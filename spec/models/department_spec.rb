@@ -7,11 +7,7 @@ RSpec.describe Department do
     expect { create(:department, name: '') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it 'has line items' do
-    expect(department.line_items).to be_a(ActiveRecord::Associations::CollectionProxy)
-  end
-
-  it 'has expenses' do
-    expect(department.expense).to be_a(Expense)
+  it 'has budgets' do
+    expect(department.budgets).to be_a(ActiveRecord::Associations::CollectionProxy)
   end
 end
