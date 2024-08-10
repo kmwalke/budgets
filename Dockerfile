@@ -32,4 +32,6 @@ RUN echo " \
 
 RUN gem install bundler
 
+RUN git config --global --add safe.directory /app
+
 ENTRYPOINT [ "./script/docker-entrypoint.sh" ]
