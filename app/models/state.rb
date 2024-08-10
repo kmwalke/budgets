@@ -3,6 +3,6 @@ class State < Municipality
   has_many :counties, class_name: 'County', foreign_key: 'municipality_id'
 
   def cities
-    'return flat collection of cities'
+    City.joins(:county).where(county: {state: self})
   end
 end
