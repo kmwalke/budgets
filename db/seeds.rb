@@ -26,20 +26,24 @@ if Rails.env.development?
   end
 
   warn 'BUILDING COUNTIES'
-  State.all.each do |state, j|
-    County.find_or_create_by!(
-      name: "County_#{j}",
-      state:,
-      status: MuniStatus::LIVE
-    )
+  State.all.each do |state|
+    10.times do |j|
+      County.find_or_create_by!(
+        name: "County_#{j}",
+        state:,
+        status: MuniStatus::LIVE
+      )
+    end
   end
 
   warn 'BUILDING CITIES'
-  County.all.each do |county, k|
-    City.find_or_create_by!(
-      name: "City_#{k}",
-      county:,
-      status: MuniStatus::LIVE
-    )
+  County.all.each do |county|
+    10.times do |k|
+      City.find_or_create_by!(
+        name: "City_#{k}",
+        county:,
+        status: MuniStatus::LIVE
+      )
+    end
   end
 end
