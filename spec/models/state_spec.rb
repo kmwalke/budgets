@@ -22,6 +22,6 @@ RSpec.describe State do
   end
 
   it 'does not return other cities' do
-    expect(state.cities.find_by(id: create(:city).id)).to eq(nil)
+    expect(state.cities.find_by(id: create(:city).id)).to be_nil
   end
 end

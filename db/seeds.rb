@@ -26,7 +26,7 @@ if Rails.env.development?
   end
 
   warn 'BUILDING COUNTIES'
-  State.all.each do |state|
+  State.find_each do |state|
     10.times do |j|
       County.find_or_create_by!(
         name: "County_#{j}",
@@ -37,7 +37,7 @@ if Rails.env.development?
   end
 
   warn 'BUILDING CITIES'
-  County.all.each do |county|
+  County.find_each do |county|
     10.times do |k|
       City.find_or_create_by!(
         name: "City_#{k}",
