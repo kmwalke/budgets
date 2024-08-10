@@ -17,14 +17,29 @@ MuniStatus::STATUSES.each do |status|
 end
 
 if Rails.env.development?
-  10.times do |i|
-    state = State.find_or_create_by!(name: "State_#{i}", status: MuniStatus::LIVE)
+  warn 'GENERATING DEVELOPMENT SEED DATA'
+  federal = Federal.find_or_create_by!(name: 'federal', status: MuniStatus::LIVE)
 
-    10.times do |j|
-      county = County.find_or_create_by!(
-        name: "County_#{j}",
-        status: MuniStatus::LIVE
-      )
-    end
+  warn 'BUILDING STATES'
+  10.times do |i|
+    State.find_or_create_by!(name: "State_#{i}", federal:, status: MuniStatus::LIVE)
+  end
+
+  warn 'BUILDING COUNTIES'
+  State.all.each do |state, j|
+    County.find_or_create_by!(
+      name: "County_#{j}",
+      state:,
+      status: MuniStatus::LIVE
+    )
+  end
+
+  warn 'BUILDING CITIES'
+  County.all.each do |county, k|
+    City.find_or_create_by!(
+      name: "City_#{k}",
+      county:,
+      status: MuniStatus::LIVE
+    )
   end
 end
