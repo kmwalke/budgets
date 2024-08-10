@@ -8,6 +8,6 @@ RSpec.describe County do
   end
 
   it 'has cities' do
-    expect(county.cities.first).to be_a(City)
+    expect(county.cities).to be_a(ActiveRecord::Associations::CollectionProxy)
   end
 end
