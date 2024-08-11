@@ -6,7 +6,7 @@ class DevDataBuilder
 
   private
 
-  def thing
+  def gen_data
     warn 'GENERATING DEVELOPMENT SEED DATA'
     federal = Federal.find_or_create_by!(name: 'federal', status: MuniStatus::LIVE)
 
