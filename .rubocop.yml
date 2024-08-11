@@ -29,7 +29,7 @@ Rails/RedundantPresenceValidationOnBelongsTo:
 
 Rails/SkipsModelValidations:
   Exclude:
-    - 'db/seeds.rb'
+    - 'app/models/dev_data_builder.rb'
 
 RSpec/IndexedLet:
   Enabled: false

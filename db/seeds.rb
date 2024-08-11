@@ -16,4 +16,4 @@ MuniStatus::STATUSES.each do |status|
   MuniStatus.find_or_create_by!(name: status)
 end
 
-DevDataBuilder::build_data if Rails.env.development?
+DevDataBuilder.build_data if Rails.env.development?
