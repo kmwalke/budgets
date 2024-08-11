@@ -27,6 +27,10 @@ Rails/InverseOf:
 Rails/RedundantPresenceValidationOnBelongsTo:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/seeds.rb'
+
 RSpec/IndexedLet:
   Enabled: false
 

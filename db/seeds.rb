@@ -21,9 +21,9 @@ if Rails.env.development?
     (part.to_f / total * 100).round(1)
   end
 
-  def display_progress(total, current, verbose = false)
+  def display_progress(total, current, verbose: false)
     warn "total: #{total} | current: #{current} | percent: #{percent(current, total)}" if verbose
-    warn "   #{percent(current, total)}%" if current % 10 == 0
+    warn "   #{percent(current, total)}%" if (current % 10).zero?
   end
 
   warn 'GENERATING DEVELOPMENT SEED DATA'
@@ -46,7 +46,7 @@ if Rails.env.development?
   end
 
   warn 'BUILDING CITIES'
-  num_counties = County.all.count
+  num_counties = County.count
   County.find_each.with_index do |county, i|
     display_progress(num_counties, i)
     10.times do |j|
@@ -58,9 +58,9 @@ if Rails.env.development?
     end
   end
 
-  def build_departments(muni_class, display_progress = false)
+  def build_departments(muni_class, display_progress: false)
     warn "-#{muni_class.name.upcase}"
-    num_munis = muni_class.all.count
+    num_munis = muni_class.count
     muni_class.find_each.with_index do |muni, i|
       display_progress(num_munis, i) if display_progress
       10.times do |j|
@@ -75,11 +75,11 @@ if Rails.env.development?
   warn 'BUILDING DEPARTMENTS'
   build_departments Federal
   build_departments State
-  build_departments County, true
-  build_departments City, true
+  build_departments County, display_progress: true
+  build_departments City, display_progress: true
 
   warn 'BUILDING BUDGETS'
-  num_depts = Department.all.count
+  num_depts = Department.count
   LineItem.delete_all
 
   Department.find_each.with_index do |dept, i|
@@ -95,14 +95,11 @@ if Rails.env.development?
         {
           budget_id: budget.id,
           name: "budget_line_item_#{j}",
-          amount: rand(1000..100000)
+          amount: rand(1000..100_000)
         }
       end
     )
-
   end
 
   warn 'SEED DATA COMPLETE'
 end
-
-
