@@ -8,6 +8,12 @@ class DevDataBuilder
 
   def gen_data
     warn 'GENERATING DEVELOPMENT SEED DATA'
+    build_municipalities
+    build_departments
+    build_budgets
+  end
+
+  def build_municipalities
     federal = Federal.find_or_create_by!(name: 'federal', status: MuniStatus::LIVE)
 
     warn 'BUILDING STATES'
@@ -27,9 +33,7 @@ class DevDataBuilder
     end
 
     warn 'BUILDING CITIES'
-    num_counties = County.count
     County.find_each.with_index do |county, i|
-      display_progress(num_counties, i)
       10.times do |j|
         City.find_or_create_by!(
           name: "City_#{j}",
@@ -38,27 +42,34 @@ class DevDataBuilder
         )
       end
     end
+  end
 
-    def build_departments(muni_class, display_progress: false)
-      warn "-#{muni_class.name.upcase}"
-      num_munis = muni_class.count
-      muni_class.find_each.with_index do |muni, i|
-        display_progress(num_munis, i) if display_progress
-        10.times do |j|
-          Department.find_or_create_by!(
-            name: "#{muni_class.name}_dept_#{j}",
-            municipality: muni
-          )
-        end
-      end
-    end
-
+  def build_departments
     warn 'BUILDING DEPARTMENTS'
-    build_departments Federal
-    build_departments State
-    build_departments County, display_progress: true
-    build_departments City, display_progress: true
+    Department.delete_all
+    generate_departments Federal
+    generate_departments State
+    generate_departments County
+    generate_departments City, display_progress: true
+  end
 
+  def generate_departments(muni_class, display_progress: false)
+    warn "-#{muni_class.name.upcase}"
+    num_munis = muni_class.count
+    muni_class.find_each.with_index do |muni, i|
+      display_progress(num_munis, i) if display_progress
+      Department.insert_all(
+        10.times.map do |j|
+          {
+            name: "#{muni_class.name}_dept_#{j}",
+            municipality_id: muni.id
+          }
+        end
+      )
+    end
+  end
+
+  def build_budgets
     warn 'BUILDING BUDGETS'
     num_depts = Department.count
     LineItem.delete_all
@@ -91,6 +102,6 @@ class DevDataBuilder
 
   def display_progress(total, current, verbose: false)
     warn "total: #{total} | current: #{current} | percent: #{percent(current, total)}" if verbose
-    warn "   #{percent(current, total)}%" if (current % 10).zero?
+    warn "   #{percent(current, total)}%" if (current % 100).zero?
   end
 end
