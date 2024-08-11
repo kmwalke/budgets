@@ -18,25 +18,12 @@ end
 
 if Rails.env.development?
   def percent(part, total)
-    (part.to_f/total*100).to_i
-  end
-  def display_progress(total, current, verbose = false)
-    warn "total: #{total} | current: #{current} | percent: #{percent(current, total)}" if verbose
-    warn "   #{percent(current, total)}%" if current%10==0
+    (part.to_f / total * 100).round(1)
   end
 
-  def build_departments(muni_class, display_progress = false)
-    warn "-#{muni_class.name.upcase}"
-    num_munis = muni_class.all.count
-    muni_class.find_each.with_index do |muni, i|
-      display_progress(num_munis, i) if display_progress
-      10.times do |j|
-        Department.find_or_create_by!(
-          name: "#{muni_class.name}_dept_#{j}",
-          municipality: muni
-        )
-      end
-    end
+  def display_progress(total, current, verbose = false)
+    warn "total: #{total} | current: #{current} | percent: #{percent(current, total)}" if verbose
+    warn "   #{percent(current, total)}%" if current % 10 == 0
   end
 
   warn 'GENERATING DEVELOPMENT SEED DATA'
@@ -71,11 +58,49 @@ if Rails.env.development?
     end
   end
 
+  def build_departments(muni_class, display_progress = false)
+    warn "-#{muni_class.name.upcase}"
+    num_munis = muni_class.all.count
+    muni_class.find_each.with_index do |muni, i|
+      display_progress(num_munis, i) if display_progress
+      10.times do |j|
+        Department.find_or_create_by!(
+          name: "#{muni_class.name}_dept_#{j}",
+          municipality: muni
+        )
+      end
+    end
+  end
+
   warn 'BUILDING DEPARTMENTS'
   build_departments Federal
   build_departments State
   build_departments County, true
   build_departments City, true
+
+  warn 'BUILDING BUDGETS'
+  num_depts = Department.all.count
+  LineItem.delete_all
+
+  Department.find_each.with_index do |dept, i|
+    display_progress(num_depts, i)
+
+    budget = Budget.find_or_create_by!(
+      department: dept,
+      year: 2024
+    )
+
+    LineItem.insert_all(
+      10.times.map do |j|
+        {
+          budget_id: budget.id,
+          name: "budget_line_item_#{j}",
+          amount: rand(1000..100000)
+        }
+      end
+    )
+
+  end
 
   warn 'SEED DATA COMPLETE'
 end
