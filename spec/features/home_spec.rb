@@ -3,14 +3,15 @@ require 'rails_helper'
 RSpec.describe 'Home' do
   let!(:state) { create(:state) }
 
-  before :each do
+  before do
     visit root_path
   end
+
   it 'displays the homepage' do
     expect(page).to have_content('tax dollars')
   end
 
-  xit 'shows the federal budget' do
+  it 'shows the federal budget', skip: 'not implemented' do
     expect(true).to be_nil
   end
 
@@ -19,7 +20,7 @@ RSpec.describe 'Home' do
   end
 
   it 'links to a state page' do
-    click_link state.name
-    expect(page).to have_current_path(state), ignore_query: true
+    click_on state.name
+    expect(page).to have_current_path(state_path(state))
   end
 end
