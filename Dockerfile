@@ -24,7 +24,7 @@ RUN echo " \
   alias rspec='RAILS_ENV=test bundle exec rspec' \n\
   alias rails='bundle exec rails' \n\
   alias rake='bundle exec rake'  \n\
-  alias rubocop='bundle exec rubocop'  \n\
+  alias rubocop='./script/rubocop.sh'  \n\
   alias guard='bundle exec guard'  \n\
   alias ls='ls --color=auto' \n\
   " >> ~/.bashrc

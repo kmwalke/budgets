@@ -27,6 +27,10 @@ Rails/InverseOf:
 Rails/RedundantPresenceValidationOnBelongsTo:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/models/dev_data_builder.rb'
+
 RSpec/IndexedLet:
   Enabled: false
 

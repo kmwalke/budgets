@@ -16,34 +16,4 @@ MuniStatus::STATUSES.each do |status|
   MuniStatus.find_or_create_by!(name: status)
 end
 
-if Rails.env.development?
-  warn 'GENERATING DEVELOPMENT SEED DATA'
-  federal = Federal.find_or_create_by!(name: 'federal', status: MuniStatus::LIVE)
-
-  warn 'BUILDING STATES'
-  10.times do |i|
-    State.find_or_create_by!(name: "State_#{i}", federal:, status: MuniStatus::LIVE)
-  end
-
-  warn 'BUILDING COUNTIES'
-  State.find_each do |state|
-    10.times do |j|
-      County.find_or_create_by!(
-        name: "County_#{j}",
-        state:,
-        status: MuniStatus::LIVE
-      )
-    end
-  end
-
-  warn 'BUILDING CITIES'
-  County.find_each do |county|
-    10.times do |k|
-      City.find_or_create_by!(
-        name: "City_#{k}",
-        county:,
-        status: MuniStatus::LIVE
-      )
-    end
-  end
-end
+DevDataBuilder.build_data if Rails.env.development?
