@@ -1,3 +1,10 @@
 <div style="width: 400px; height: 300px; border: 1px solid black">
   <%= municipality.name %> budget placeholder
+  <ul>
+    <% municipality.departments.each do |department| -%>
+    <li>
+      <%= department.name %>
+    </li>
+    <% end %>
+  </ul>
 </div>
