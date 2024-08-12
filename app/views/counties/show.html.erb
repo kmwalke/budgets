@@ -1,10 +1,3 @@
 <h1><%= @county.name %> Budget</h1>
-<div style="width: 400px; height: 300px; border: 1px solid black">
-  County budget placeholder
-</div>
-
-<ul>
-  <% @county.cities.each do |city| -%>
-    <li><%= link_to city.name, city %></li>
-  <% end %>
-</ul>
+<%= render 'partials/bar_chart', municipality: @county %>
+<%= render 'partials/municipality_list', municipalities: @county.cities %>

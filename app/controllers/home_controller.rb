@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @states = State.all
+    @federal = Federal.first
   end
 end
