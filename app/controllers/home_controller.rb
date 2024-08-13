@@ -1,3 +1,5 @@
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @federal = Federal.first
+  end
 end

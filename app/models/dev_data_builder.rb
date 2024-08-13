@@ -39,7 +39,7 @@ class DevDataBuilder
   end
 
   def generate_federal
-    Federal.find_or_create_by!(name: 'federal', status: MuniStatus::LIVE)
+    Federal.find_or_create_by!(name: 'home', status: MuniStatus::LIVE)
   end
 
   def generate_states

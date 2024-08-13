@@ -4,4 +4,8 @@ class Budget < ApplicationRecord
   belongs_to :department
 
   has_many :line_items
+
+  def total_amount
+    line_items.map(&:amount).sum
+  end
 end

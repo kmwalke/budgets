@@ -1,0 +1,7 @@
+<h1>
+  <%= link_to @state.federal.name, root_path %> >
+  <%= @state.name %>
+</h1>
+<%= render 'partials/municipality_chart', municipality: @state %>
+<%= render 'partials/municipality_list', municipalities: @state.counties %>
+<%= render 'partials/municipality_list', municipalities: @state.cities %>
