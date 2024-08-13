@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   root 'home#index'
+
+  get '/states/:id', to: 'states#show', as: 'state'
+  get '/counties/:id', to: 'counties#show', as: 'county'
+  get '/cities/:id', to: 'cities#show', as: 'city'
 end

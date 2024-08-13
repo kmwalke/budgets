@@ -1,0 +1,12 @@
+<fieldset>
+
+  <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
+  <ul>
+    <% municipality.departments.each do |department| -%>
+      <li>
+        <%= department.name %> : <%= currency department.latest_budget.total_amount %>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+</fieldset>

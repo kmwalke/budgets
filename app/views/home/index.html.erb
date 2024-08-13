@@ -1,1 +1,7 @@
-<h1>Where are your tax dollars going?</h1>
+<% if @federal -%>
+  <h1>
+    <%= @federal.name %>
+  </h1>
+  <%= render 'partials/municipality_chart', municipality: @federal %>
+  <%= render 'partials/municipality_list', municipalities: @federal&.states %>
+<% end -%>

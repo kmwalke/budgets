@@ -14,4 +14,13 @@ RSpec.describe Budget do
   it 'has a department' do
     expect(budget.department).to be_a(Department)
   end
+
+  it 'calculates total budget' do
+    li1 = create(:line_item, budget:)
+    li2 = create(:line_item, budget:)
+    li3 = create(:line_item, budget:)
+    li4 = create(:line_item, budget:)
+
+    expect(budget.total_amount).to eq(li1.amount + li2.amount + li3.amount + li4.amount)
+  end
 end
