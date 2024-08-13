@@ -1,3 +1,5 @@
-<h1>Federal Budget</h1>
-<%= render 'partials/bar_chart', municipality: @federal %>
+<h1>
+  <%= @federal.name %> Budget
+</h1>
+<%= render 'partials/municipality_chart', municipality: @federal %>
 <%= render 'partials/municipality_list', municipalities: @federal.states %>

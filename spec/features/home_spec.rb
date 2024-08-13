@@ -11,7 +11,7 @@ RSpec.describe 'Home' do
     expect(page).to have_content('tax dollars')
   end
 
-  it 'shows the federal budget', skip: 'not implemented' do
+  it 'shows the home budget', skip: 'not implemented' do
     expect(true).to be_nil
   end
 

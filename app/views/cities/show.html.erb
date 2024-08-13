@@ -1,2 +1,7 @@
-<h1><%= @city.name %> Budget</h1>
-<%= render 'partials/bar_chart', municipality: @city %>
+<h1>
+  <%= link_to @city.county.state.federal.name, root_path %> >
+  <%= link_to @city.county.state.name, @city.county.state %> >
+  <%= link_to @city.county.name, @city.county %> >
+  <%= @city.county.name %> Budget
+</h1>
+<%= render 'partials/municipality_chart', municipality: @city %>

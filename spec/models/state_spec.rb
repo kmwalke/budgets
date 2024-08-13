@@ -5,7 +5,7 @@ RSpec.describe State do
   let(:county) { create(:county, state:) }
   let(:city) { create(:city, county:) }
 
-  it 'has a federal parent' do
+  it 'has a home parent' do
     expect(state.federal).to be_a(Federal)
   end
 

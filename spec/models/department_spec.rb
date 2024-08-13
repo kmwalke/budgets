@@ -14,4 +14,8 @@ RSpec.describe Department do
   it 'has a municipality' do
     expect(department.municipality).to be_a(Municipality)
   end
+
+  it 'gets latest budget' do
+    expect(true).to be_nil
+  end
 end

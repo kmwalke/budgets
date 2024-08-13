@@ -1,9 +1,8 @@
 <div style="width: 400px; height: 300px; border: 1px solid black">
-  <%= municipality.name %> budget placeholder
   <ul>
     <% municipality.departments.each do |department| -%>
     <li>
-      <%= department.name %>
+      <%= department.name %> : <%= number_to_currency department.latest_budget.total_amount, precision: 0 %>
     </li>
     <% end %>
   </ul>

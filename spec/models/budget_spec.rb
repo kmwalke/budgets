@@ -14,4 +14,8 @@ RSpec.describe Budget do
   it 'has a department' do
     expect(budget.department).to be_a(Department)
   end
+
+  it 'calculates total budget' do
+    expect(true).to be_nil
+  end
 end
