@@ -3,10 +3,8 @@ require 'rails_helper'
 RSpec.describe 'State' do
   before do
     @state = create(:state)
-    3.times do
-      budget = create(:budget, department: create(:department, municipality: @state))
-      create_list(:line_item, 10, budget:)
-    end
+    budget = create(:budget, department: create(:department, municipality: @state))
+    create_list(:line_item, 10, budget:)
     visit state_path(@state)
   end
 
@@ -14,8 +12,10 @@ RSpec.describe 'State' do
     expect(page).to have_content(@state.departments.first.latest_budget.year)
   end
 
-  it 'shows the latest state budget data' do
-    expect(page).to have_content(@state.departments.first.name)
+  it 'shows the departments' do
+    @state.departments.each do |department|
+      expect(page).to have_content(department.name)
+    end
   end
 
   it 'lists the counties' do

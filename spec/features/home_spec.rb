@@ -3,19 +3,16 @@ require 'rails_helper'
 RSpec.describe 'Home' do
   before do
     @federal = create(:federal)
-    3.times do
-      budget = create(:budget, department: create(:department, municipality: @federal))
-      create_list(:line_item, 10, budget:)
-    end
+    budget = create(:budget, department: create(:department, municipality: @federal))
+    create_list(:line_item, 10, budget:)
+    visit root_path
   end
 
   it 'shows the latest federal budget' do
-    visit root_path
     expect(page).to have_content(@federal.departments.first.latest_budget.year)
   end
 
   it 'shows the latest federal budget data' do
-    visit root_path
     expect(page).to have_content(@federal.departments.first.name)
   end
 
