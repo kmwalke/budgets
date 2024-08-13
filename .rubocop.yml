@@ -34,3 +34,5 @@ Rails/SkipsModelValidations:
 RSpec/IndexedLet:
   Enabled: false
 
+RSpec/InstanceVariable:
+  Enabled: false

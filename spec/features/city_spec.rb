@@ -1,18 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'City' do
-
-  before :all do
+  before do
     @city = create(:city)
     3.times do
       budget = create(:budget, department: create(:department, municipality: @city))
-      10.times do
-        create(:line_item, budget:)
-      end
+      create_list(:line_item, 10, budget:)
     end
-  end
-
-  before :each do
     visit city_path(@city)
   end
 
@@ -22,13 +16,5 @@ RSpec.describe 'City' do
 
   it 'shows the latest city budget data' do
     expect(page).to have_content(@city.departments.first.name)
-  end
-
-  it 'does not show draft budgets', skip: 'not implemented' do
-    expect(true).to be_nil
-  end
-
-  it 'shows old budgets', skip: 'not implemented' do
-    expect(true).to be_nil
   end
 end

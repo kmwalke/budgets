@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'State' do
-  before :all do
+  before do
     @state = create(:state)
     3.times do
       budget = create(:budget, department: create(:department, municipality: @state))
-      10.times do
-        create(:line_item, budget:)
-      end
+      create_list(:line_item, 10, budget:)
     end
-  end
-
-  before :each do
     visit state_path(@state)
   end
 
