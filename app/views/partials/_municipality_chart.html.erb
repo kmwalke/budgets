@@ -1,9 +1,12 @@
-<div style="width: 400px; height: 300px; border: 1px solid black">
+<fieldset>
+
+  <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
   <ul>
     <% municipality.departments.each do |department| -%>
-    <li>
-      <%= department.name %> : <%= number_to_currency department.latest_budget.total_amount, precision: 0 %>
-    </li>
+      <li>
+        <%= department.name %> : <%= currency department.latest_budget.total_amount %>
+      </li>
     <% end %>
   </ul>
-</div>
+  </div>
+</fieldset>

@@ -16,6 +16,11 @@ RSpec.describe Budget do
   end
 
   it 'calculates total budget' do
-    expect(true).to be_nil
+    li_1 = create(:line_item, budget:)
+    li_2 = create(:line_item, budget:)
+    li_3 = create(:line_item, budget:)
+    li_4 = create(:line_item, budget:)
+
+    expect(budget.total_amount).to eq(li_1.amount + li_2.amount + li_3.amount + li_4.amount)
   end
 end

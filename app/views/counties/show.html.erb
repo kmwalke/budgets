@@ -1,7 +1,7 @@
 <h1>
   <%= link_to @county.state.federal.name, root_path %> >
   <%= link_to @county.state.name, @county.state %> >
-  <%= @county.name %> Budget
+  <%= @county.name %>
 </h1>
 <%= render 'partials/municipality_chart', municipality: @county %>
 <%= render 'partials/municipality_list', municipalities: @county.cities %>
