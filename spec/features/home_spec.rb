@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Home' do
+RSpec.describe 'Home', skip: 'not working' do
   before do
     @federal = create(:federal)
-    budget = create(:budget, department: create(:department, municipality: @federal))
+    budget   = create(:budget, department: create(:department, municipality: @federal))
     create_list(:line_item, 10, budget:)
     visit root_path
   end

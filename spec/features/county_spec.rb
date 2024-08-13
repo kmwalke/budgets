@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'County' do
   before do
     @county = create(:county)
-    budget = create(:budget, department: create(:department, municipality: @county))
+    budget  = create(:budget, department: create(:department, municipality: @county))
     create_list(:line_item, 10, budget:)
     visit county_path(@county)
   end
