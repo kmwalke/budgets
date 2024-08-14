@@ -15,8 +15,6 @@ class DevDataBuilder
 
   def build_municipalities
     warn 'BUILDING MUNICIPALITIES'
-    warn '-FEDERAL'
-    generate_federal
     warn '-STATES'
     generate_states
     warn '-COUNTIES'
@@ -36,10 +34,6 @@ class DevDataBuilder
     generate_departments County
     warn '-CITIES'
     generate_departments City, display_progress: true
-  end
-
-  def generate_federal
-    Federal.find_or_create_by!(name: 'USA', status: MuniStatus::LIVE)
   end
 
   def generate_states

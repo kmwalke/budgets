@@ -23,4 +23,10 @@ RSpec.describe Department do
 
     expect(department.latest_budget).to eq(latest_budget)
   end
+
+  it 'gets amount' do
+    create(:budget, department:)
+
+    expect(department.amount).to eq department.latest_budget.amount
+  end
 end

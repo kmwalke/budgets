@@ -4,4 +4,8 @@ class Municipality < ApplicationRecord
   validates :status, presence: true
 
   has_many :departments
+
+  def amount
+    departments&.map(&:amount)&.sum || 0
+  end
 end

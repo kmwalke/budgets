@@ -20,16 +20,6 @@ ENV PATH $BUNDLE_PATH/bin:$GEM_HOME/gems/bin:$PATH
 WORKDIR /app
 EXPOSE 3000
 
-RUN echo " \
-  alias rspec='RAILS_ENV=test bundle exec rspec' \n\
-  alias rails='bundle exec rails' \n\
-  alias rake='bundle exec rake'  \n\
-  alias rubocop='./script/rubocop.sh'  \n\
-  alias guard='bundle exec guard'  \n\
-  alias ls='ls --color=auto' \n\
-  " >> ~/.bashrc
-
-
 RUN gem install bundler
 
 RUN git config --global --add safe.directory /app
