@@ -1,0 +1,14 @@
+<div class="list-chart">
+  <fieldset>
+
+    <legend><%= department.latest_budget&.year %> Budget</legend>
+    <span>Total: <%= currency department.latest_budget&.amount %></span>
+    <ul>
+      <% department.latest_budget&.line_items&.each do |line_item| -%>
+        <li>
+          <%= line_item.name %> : <%= currency line_item.amount %>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+</div>

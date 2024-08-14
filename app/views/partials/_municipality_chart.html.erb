@@ -1,12 +1,14 @@
-<fieldset>
+<div class="list-chart">
+  <fieldset>
 
-  <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
-  <ul>
-    <% municipality.departments.each do |department| -%>
-      <li>
-        <%= department.name %> : <%= currency department.latest_budget.total_amount %>
-      </li>
-    <% end %>
-  </ul>
-  </div>
-</fieldset>
+    <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
+    <span>Total: <%= currency municipality.amount %></span>
+    <ul>
+      <% municipality.departments.each do |department| -%>
+        <li>
+          <%= link_to department.name, department %> : <%= currency department.amount %>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+</div>

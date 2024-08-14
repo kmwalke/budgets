@@ -5,7 +5,7 @@ class Budget < ApplicationRecord
 
   has_many :line_items
 
-  def total_amount
-    line_items.map(&:amount).sum
+  def amount
+    line_items&.map(&:amount)&.sum || 0
   end
 end

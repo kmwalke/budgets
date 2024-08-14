@@ -15,4 +15,12 @@ RSpec.describe 'City' do
   it 'shows the latest city budget data' do
     expect(page).to have_content(@city.departments.first.name)
   end
+
+  it 'links to a department' do
+    dept = create(:department, municipality: @city)
+
+    visit city_path(@city)
+    click_on dept.name
+    expect(page).to have_current_path(department_path(dept))
+  end
 end
