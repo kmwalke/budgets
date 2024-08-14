@@ -16,4 +16,6 @@ MuniStatus::STATUSES.each do |status|
   MuniStatus.find_or_create_by!(name: status)
 end
 
+Federal.find_or_create_by!(name: 'USA', status: MuniStatus::LIVE)
+
 DevDataBuilder.build_data if Rails.env.development?
