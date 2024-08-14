@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Home', skip: 'not working' do
+RSpec.describe 'Federal' do
   before do
     @federal = create(:federal)
     budget   = create(:budget, department: create(:department, municipality: @federal))
