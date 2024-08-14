@@ -8,4 +8,8 @@ class Department < ApplicationRecord
   def latest_budget
     budgets.order(year: :desc).first
   end
+
+  def amount
+    latest_budget&.amount
+  end
 end
