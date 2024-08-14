@@ -6,10 +6,10 @@ class Department < ApplicationRecord
   has_many :budgets
 
   def latest_budget
-    budgets.order(year: :desc).first
+    budgets&.order(year: :desc)&.first
   end
 
   def amount
-    latest_budget&.amount
+    latest_budget&.amount || 0
   end
 end
