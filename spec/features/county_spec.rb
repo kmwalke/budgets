@@ -28,4 +28,12 @@ RSpec.describe 'County' do
     click_on city.name
     expect(page).to have_current_path(city_path(city))
   end
+
+  it 'links to a department' do
+    dept = create(:department, municipality: @county)
+
+    visit county_path(@county)
+    click_on dept.name
+    expect(page).to have_current_path(department_path(dept))
+  end
 end

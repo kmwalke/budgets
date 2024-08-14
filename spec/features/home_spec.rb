@@ -28,4 +28,12 @@ RSpec.describe 'Home', skip: 'not working' do
     click_on state.name
     expect(page).to have_current_path(state_path(state))
   end
+
+  it 'links to a department' do
+    dept = create(:department, municipality: @federal)
+
+    visit root_path
+    click_on dept.name
+    expect(page).to have_current_path(department_path(dept))
+  end
 end

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get '/states/:id', to: 'states#show', as: 'state'
   get '/counties/:id', to: 'counties#show', as: 'county'
   get '/cities/:id', to: 'cities#show', as: 'city'
+  get '/departments/:id', to: 'departments#show', as: 'department'
 end

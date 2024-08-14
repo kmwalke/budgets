@@ -4,7 +4,7 @@
   <ul>
     <% municipality.departments.each do |department| -%>
       <li>
-        <%= department.name %> : <%= currency department.latest_budget.total_amount %>
+        <%= link_to department.name, department %> : <%= currency department.latest_budget&.total_amount %>
       </li>
     <% end %>
   </ul>
