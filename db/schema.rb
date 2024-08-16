@@ -10,69 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_16_123109) do
+ActiveRecord::Schema[7.2].define(version: 20_240_816_123_109) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "app_errors", force: :cascade do |t|
-    t.string "ae_error"
-    t.text "ae_backtrace"
-    t.string "ae_severity"
-    t.string "ae_handled"
-    t.string "ae_source"
-    t.string "ae_context"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'app_errors', force: :cascade do |t|
+    t.string 'ae_error'
+    t.text 'ae_backtrace'
+    t.string 'ae_severity'
+    t.string 'ae_handled'
+    t.string 'ae_source'
+    t.string 'ae_context'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "budgets", force: :cascade do |t|
-    t.integer "year"
-    t.integer "department_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'budgets', force: :cascade do |t|
+    t.integer 'year'
+    t.integer 'department_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "departments", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "municipality_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'departments', force: :cascade do |t|
+    t.string 'name', null: false
+    t.integer 'municipality_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "line_items", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "budget_id", null: false
-    t.integer "amount", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'line_items', force: :cascade do |t|
+    t.string 'name', null: false
+    t.integer 'budget_id', null: false
+    t.integer 'amount', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "muni_statuses", primary_key: "name", id: :string, force: :cascade do |t|
-    t.index ["name"], name: "unique_statuses", unique: true
+  create_table 'muni_statuses', primary_key: 'name', id: :string, force: :cascade do |t|
+    t.index ['name'], name: 'unique_statuses', unique: true
   end
 
-  create_table "muni_types", primary_key: "name", id: :string, force: :cascade do |t|
-    t.index ["name"], name: "unique_muni_types", unique: true
+  create_table 'muni_types', primary_key: 'name', id: :string, force: :cascade do |t|
+    t.index ['name'], name: 'unique_muni_types', unique: true
   end
 
-  create_table "municipalities", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "type", null: false
-    t.string "status", default: "draft", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "municipality_id"
+  create_table 'municipalities', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'type', null: false
+    t.string 'status', default: 'draft', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'municipality_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 end
