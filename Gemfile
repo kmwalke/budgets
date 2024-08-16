@@ -5,6 +5,7 @@ ruby '3.3.4'
 
 gem 'bcrypt'
 gem 'bootsnap'
+gem 'devise'
 gem 'faraday'
 gem 'importmap-rails'
 gem 'jbuilder'
