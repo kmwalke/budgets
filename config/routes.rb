@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get '/counties/:id', to: 'counties#show', as: 'county'
   get '/cities/:id', to: 'cities#show', as: 'city'
   get '/departments/:id', to: 'departments#show', as: 'department'
+
+  devise_for :users
 end
