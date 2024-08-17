@@ -12,7 +12,9 @@ gem 'jbuilder'
 gem 'pg'
 gem 'puma'
 gem 'rails'
+gem 'redis'
 gem 'sass-rails'
+gem 'sidekiq'
 gem 'turbo-rails'
 
 group :development, :test do
