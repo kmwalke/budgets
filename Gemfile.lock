@@ -96,6 +96,12 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
+    devise (4.9.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.5.1)
     drb (2.2.1)
     em-websocket (0.5.3)
@@ -205,6 +211,7 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    orm_adapter (0.5.0)
     parallel (1.26.1)
     parser (3.3.4.2)
       ast (~> 2.4.1)
@@ -272,6 +279,9 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.3.4)
       strscan
     rspec (3.13.0)
@@ -372,6 +382,8 @@ GEM
     unicode-display_width (2.5.0)
     uri (0.13.0)
     useragent (0.16.10)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -403,6 +415,7 @@ DEPENDENCIES
   bootsnap
   byebug
   capybara
+  devise
   factory_bot_rails
   faraday
   guard
