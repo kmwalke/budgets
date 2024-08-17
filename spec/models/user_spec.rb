@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'requires a email' do
+    expect { create(:user, email: '') }.to raise_error(ActiveRecord::RecordInvalid)
+  end
 end
