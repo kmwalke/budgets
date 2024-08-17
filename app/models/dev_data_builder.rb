@@ -10,6 +10,7 @@ class DevDataBuilder
     build_municipalities
     build_departments
     build_budgets
+    build_users
     warn 'SEED DATA COMPLETE'
   end
 
@@ -107,6 +108,16 @@ class DevDataBuilder
         end
       )
     end
+  end
+
+  def build_users
+    warn 'BUILDING USERS'
+    User.delete_all
+    u          = User.new
+    u.name     = 'Kent'
+    u.email    = 'kmwalke@gmail.com'
+    u.password = 'password'
+    u.save
   end
 
   def display_progress(total, current, verbose: false)

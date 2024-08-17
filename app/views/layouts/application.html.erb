@@ -12,8 +12,13 @@
 
   <body>
   <div class="header">
+    <%= render 'partials/admin_header' if user_signed_in? %>
     <h2>Where are your tax dollars going?</h2>
   </div>
+  <div class="content">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+  </div>
   </body>
 </html>

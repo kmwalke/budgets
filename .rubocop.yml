@@ -13,10 +13,23 @@ AllCops:
     - 'db/schema.rb'
     - 'bin/*'
 
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'Guardfile'
     - 'config/environments/*'
+    - 'db/schema.rb'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
 
 Rails/I18nLocaleTexts:
   Enabled: false

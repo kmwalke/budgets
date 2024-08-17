@@ -13,6 +13,7 @@ x-budgets-common:
   stdin_open: true # docker run -i
   tty: true        # docker run -t
   environment:
+    USERNAME: $USER
     DB_DEV: ${DB_DEV}
     DB_HOST: ${DB_HOST}
     DB_TEST: ${DB_TEST}
