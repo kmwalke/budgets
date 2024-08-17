@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   get '/cities/:id', to: 'cities#show', as: 'city'
   get '/departments/:id', to: 'departments#show', as: 'department'
 
-  devise_for :users, skip: :sign_up, path: 'admin'
+  devise_for :users, skip: :registration, path: 'admin'
 end
