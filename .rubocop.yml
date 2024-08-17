@@ -27,6 +27,10 @@ Style/NumericLiterals:
   Exclude:
     - 'db/schema.rb'
 
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
 Rails/I18nLocaleTexts:
   Enabled: false
 
