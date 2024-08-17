@@ -24,4 +24,6 @@ RUN gem install bundler
 
 RUN git config --global --add safe.directory /app
 
+RUN mkdir /gems && chown -R $USERNAME /gems
+
 ENTRYPOINT [ "./script/docker-entrypoint.sh" ]
