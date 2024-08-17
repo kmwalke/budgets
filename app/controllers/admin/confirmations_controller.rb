@@ -1,4 +1,4 @@
-module Users
+module Admin
   class ConfirmationsController < Devise::ConfirmationsController
     # GET /resource/confirmation/new
     # def new
