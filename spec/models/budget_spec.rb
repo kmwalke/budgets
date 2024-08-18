@@ -11,6 +11,14 @@ RSpec.describe Budget do
     expect(budget.line_items).to be_a(ActiveRecord::Associations::CollectionProxy)
   end
 
+  it 'requires a status' do
+    expect { create(:budget, status: nil) }.to raise_error(ActiveRecord::NotNullViolation)
+  end
+
+  it 'requires a valid status' do
+    expect { create(:budget, status: 'invalid status') }.to raise_error(ActiveRecord::InvalidForeignKey)
+  end
+
   it 'has a department' do
     expect(budget.department).to be_a(Department)
   end

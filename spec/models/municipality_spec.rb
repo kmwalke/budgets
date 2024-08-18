@@ -12,7 +12,7 @@ RSpec.describe Municipality do
   end
 
   it 'requires a valid type' do
-    expect { create(:municipality, type: 'invalid type') }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:municipality, type: 'invalid type') }.to raise_error(ActiveRecord::InvalidForeignKey)
   end
 
   it 'requires a status' do
@@ -20,7 +20,7 @@ RSpec.describe Municipality do
   end
 
   it 'requires a valid status' do
-    expect { create(:municipality, status: 'invalid status') }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:municipality, status: 'invalid status') }.to raise_error(ActiveRecord::InvalidForeignKey)
   end
 
   it 'defaults status to draft' do
