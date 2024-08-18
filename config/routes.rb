@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get '/departments/:id', to: 'departments#show', as: 'department'
 
   devise_for :users, skip: :registration, path: 'admin'
+
+  resources :budgets
 end
