@@ -17,11 +17,19 @@ Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
 
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/20240817192951_create_active_storage_tables.active_storage.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'Guardfile'
     - 'config/environments/*'
     - 'db/schema.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/20240817192951_create_active_storage_tables.active_storage.rb'
 
 Style/NumericLiterals:
   Exclude:
