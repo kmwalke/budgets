@@ -8,13 +8,21 @@ RSpec.describe 'Budget' do
     visit state_path(@state)
   end
 
-  describe 'logged out', skip: 'not implemented' do
+  describe 'logged out' do
     it 'does not show draft budget' do
-      expect(true).to be_nil
+      budget = create(:budget, department: create(:department, municipality: @state), status: MuniStatus::DRAFT)
+      create_list(:line_item, 10, budget:)
+      visit state_path(@state)
+
+      expect(page).to have_no_content(budget.year)
     end
 
     it 'shows live budget' do
-      expect(true).to be_nil
+      budget = create(:budget, department: create(:department, municipality: @state), status: MuniStatus::LIVE)
+      create_list(:line_item, 10, budget:)
+      visit state_path(@state)
+
+      expect(page).to have_content(budget.year)
     end
   end
 
@@ -33,10 +41,16 @@ RSpec.describe 'Budget' do
     end
 
     it 'shows draft budgets' do
-      expect(true).to be_nil
+      budget = create(:budget, department: create(:department, municipality: @state), status: MuniStatus::DRAFT)
+      create_list(:line_item, 10, budget:)
+      visit state_path(@state)
+
+      expect(page).to have_content(budget.year)
     end
 
     it 'triggers an import on attaching a csv', skip: 'not implemented' do
+      budget = create(:budget, department: create(:department, municipality: @state), status: MuniStatus::DRAFT)
+      budget.csv.attach('csv')
       expect(true).to be_nil
     end
   end
