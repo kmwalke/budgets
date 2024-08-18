@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Budget' do
   before do
-    @state = create(:state)
+    @state  = create(:state)
     @budget = create(:budget, department: create(:department, municipality: @state))
     create_list(:line_item, 10, budget: @budget)
     visit state_path(@state)

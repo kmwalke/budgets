@@ -11,8 +11,16 @@ RSpec.describe Municipality do
     expect { create(:municipality, type: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
+  it 'requires a valid type' do
+    expect { create(:municipality, type: 'invalid type') }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'requires a status' do
     expect { create(:municipality, status: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
+  it 'requires a valid status' do
+    expect { create(:municipality, status: 'invalid status') }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it 'defaults status to draft' do
