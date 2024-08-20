@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: :registration, path: 'admin'
 
-  resources :budgets
+  namespace :admin do
+    resources :municipalities
+  end
 end
