@@ -6,7 +6,7 @@ module Admin
 
     def update
       respond_to do |format|
-        if @municipality.update(municipality_params)
+        if @municipality.csv.attach(municipality_params[:csv])
           format.html { redirect_to root_path, notice: 'Municipality was successfully updated.' }
         else
           format.html { render :edit }
