@@ -1,6 +1,8 @@
 <div>
-  <%= link_to 'CSV', municipality.csv %>
-  |
+  <% if municipality.csv.attached? -%>
+    <%= link_to municipality.csv.filename, municipality.csv %>
+    |
+  <% end -%>
   <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
 </div>
 <div class="list-chart">
