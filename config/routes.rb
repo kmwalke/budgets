@@ -9,10 +9,19 @@ Rails.application.routes.draw do
   root 'federals#show'
 
   get '/federals', to: 'federals#show', as: 'federal'
+  get '/federals/:id', to: 'federals#show'
   get '/states/:id', to: 'states#show', as: 'state'
   get '/counties/:id', to: 'counties#show', as: 'county'
   get '/cities/:id', to: 'cities#show', as: 'city'
   get '/departments/:id', to: 'departments#show', as: 'department'
 
   devise_for :users, skip: :registration, path: 'admin'
+
+  namespace :admin do
+    resources :municipalities do
+      member do
+        patch 'activate'
+      end
+    end
+  end
 end

@@ -8,14 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-MuniType::TYPES.each do |type|
-  MuniType.find_or_create_by!(name: type)
-end
+DataBuilder.build_data
 
-MuniStatus::STATUSES.each do |status|
-  MuniStatus.find_or_create_by!(name: status)
-end
-
-Federal.find_or_create_by!(name: 'USA', status: MuniStatus::LIVE)
-
-DevDataBuilder.build_data if Rails.env.development?
+DataBuilder.build_dev_data if Rails.env.development?

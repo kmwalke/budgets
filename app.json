@@ -10,6 +10,7 @@
     "postdeploy": "./script/postdeploy.sh"
   },
   "addons": [
-    "papertrail"
+    "papertrail",
+    "heroku-redis"
   ]
 }

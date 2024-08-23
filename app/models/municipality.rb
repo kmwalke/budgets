@@ -5,7 +5,13 @@ class Municipality < ApplicationRecord
 
   has_many :departments
 
+  has_one_attached :csv
+
   def amount
     departments&.map(&:amount)&.sum || 0
+  end
+
+  def live?
+    status == MuniStatus::LIVE
   end
 end
