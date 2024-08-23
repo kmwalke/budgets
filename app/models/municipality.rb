@@ -10,4 +10,8 @@ class Municipality < ApplicationRecord
   def amount
     departments&.map(&:amount)&.sum || 0
   end
+
+  def live?
+    status == MuniStatus::LIVE
+  end
 end

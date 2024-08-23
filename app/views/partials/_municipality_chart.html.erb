@@ -7,17 +7,19 @@
     <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
   </div>
 <% end -%>
-<div class="list-chart">
-  <fieldset>
+<% if user_signed_in? || municipality.live? -%>
+  <div class="list-chart">
+    <fieldset>
 
-    <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
-    <span>Total: <%= currency municipality.amount %></span>
-    <ul>
-      <% municipality.departments.each do |department| -%>
-        <li>
-          <%= link_to department.name, department %> : <%= currency department.amount %>
-        </li>
-      <% end %>
-    </ul>
-  </fieldset>
-</div>
+      <legend><%= municipality&.departments&.first&.latest_budget&.year %> Budget</legend>
+      <span>Total: <%= currency municipality.amount %></span>
+      <ul>
+        <% municipality.departments.each do |department| -%>
+          <li>
+            <%= link_to department.name, department %> : <%= currency department.amount %>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+<% end -%>

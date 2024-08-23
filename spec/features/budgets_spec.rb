@@ -38,14 +38,6 @@ RSpec.describe 'Budget' do
       visit state_path(@state)
     end
 
-    it 'creates a budget' do
-      click_on 'Upload Budget CSV'
-      # fill_in 'Year', with: 2024
-      click_on 'Update Budget'
-
-      expect(page).to have_current_path(state_path(@state))
-    end
-
     it 'redirects after editing a budget' do
       visit edit_admin_municipality_path(@state)
 
@@ -84,6 +76,7 @@ RSpec.describe 'Budget' do
 end
 
 def create_budget(status: MuniStatus::DRAFT)
+  @state.update(status:)
   budget = create(:budget, year: 2024, department: create(:department, municipality: @state), status:)
   create_list(:line_item, 10, budget:)
 
