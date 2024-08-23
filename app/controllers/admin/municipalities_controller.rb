@@ -1,6 +1,6 @@
 module Admin
   class MunicipalitiesController < ApplicationController
-    before_action :set_municipality, only: [:edit, :update]
+    before_action :set_municipality, :logged_in
 
     def edit; end
 

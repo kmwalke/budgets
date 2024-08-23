@@ -1,10 +1,12 @@
-<div>
-  <% if municipality.csv.attached? -%>
-    <%= link_to municipality.csv.filename, municipality.csv %>
-    |
-  <% end -%>
-  <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
-</div>
+<% if user_signed_in? -%>
+  <div>
+    <% if municipality.csv.attached? -%>
+      <%= link_to municipality.csv.filename, municipality.csv %>
+      |
+    <% end -%>
+    <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
+  </div>
+<% end -%>
 <div class="list-chart">
   <fieldset>
 

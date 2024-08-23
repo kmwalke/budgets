@@ -28,7 +28,7 @@ RSpec.describe 'Budget' do
     end
 
     it 'does not link to new budget' do
-      expect(page).to have_no_content('New Budget')
+      expect(page).to have_no_content('Upload Budget CSV')
     end
   end
 
