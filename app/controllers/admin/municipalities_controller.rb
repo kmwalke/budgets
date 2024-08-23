@@ -14,6 +14,16 @@ module Admin
       end
     end
 
+    def activate
+      respond_to do |format|
+        if @municipality.update(status: MuniStatus::LIVE)
+          format.html { redirect_to @muni_path, notice: 'Municipality is now LIVE.' }
+        else
+          format.html { render :show }
+        end
+      end
+    end
+
     private
 
     def set_municipality

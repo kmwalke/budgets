@@ -51,7 +51,7 @@ RSpec.describe 'Budget' do
 
       click_on 'Activate Budget'
 
-      expect(draft_budget.reload.status).to eq(MuniStatus::LIVE)
+      expect(page).to have_content('Status: LIVE')
     end
 
     it 'redirects after activating a budget' do

@@ -1,5 +1,11 @@
 <% if user_signed_in? -%>
   <div>
+    Status: <%= municipality.status.upcase %>
+    <% unless municipality.live? -%>
+      <%= button_to 'Activate Budget', activate_admin_municipality_path(municipality), method: :patch %>
+    <% end -%>
+  </div>
+  <div>
     <% if municipality.csv.attached? -%>
       <%= link_to municipality.csv.filename, municipality.csv %>
       |

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   devise_for :users, skip: :registration, path: 'admin'
 
   namespace :admin do
-    resources :municipalities
+    resources :municipalities do
+      member do
+        patch 'activate'
+      end
+    end
   end
 end
