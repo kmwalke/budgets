@@ -22,7 +22,7 @@ module Admin
     end
 
     def municipality_params
-      params.require(:municipality).permit(:csv)
+      params.permit(:municipality).permit(:csv)
     end
 
     def path_for(municipality)

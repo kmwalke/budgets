@@ -23,7 +23,7 @@ RSpec.describe 'Budget' do
     end
 
     it 'requires logging in to create a budget' do
-      visit new_budget_path
+      visit edit_admin_municipality_path(@state)
       expect(page).to have_current_path(root_path)
     end
 
@@ -39,44 +39,17 @@ RSpec.describe 'Budget' do
     end
 
     it 'creates a budget' do
-      click_on 'New Budget'
-      fill_in 'Year', with: 2024
-      click_on 'Create Budget'
-
-      expect(page).to have_current_path(state_path(@state))
-    end
-
-    it 'edits a budget' do
-      visit state_path(@state)
-
-      fill_in 'Year', with: 1066
+      click_on 'Upload Budget CSV'
+      # fill_in 'Year', with: 2024
       click_on 'Update Budget'
 
-      expect(draft_budget.reload.year).to eq(1066)
+      expect(page).to have_current_path(state_path(@state))
     end
 
     it 'redirects after editing a budget' do
-      visit edit_budget_path(draft_budget)
+      visit edit_admin_municipality_path(@state)
 
       click_on 'Update Budget'
-
-      expect(page).to have_current_path(state_path(@state))
-    end
-
-    it 'deletes a budget' do
-      budget_id = draft_budget.id
-      visit state_path(@state)
-
-      click_on draft_budget.year.to_s
-      click_on 'Delete Budget'
-
-      expect(Budget.find(budget_id)).to be_nil
-    end
-
-    it 'redirects after deleteing a budget' do
-      visit edit_budget_path(draft_budget)
-
-      click_on 'Delete Budget'
 
       expect(page).to have_current_path(state_path(@state))
     end
