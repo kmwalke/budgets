@@ -7,7 +7,7 @@ module Admin
     def update
       respond_to do |format|
         if @municipality.csv.attach(municipality_params[:csv])
-          format.html { redirect_to root_path, notice: 'Municipality was successfully updated.' }
+          format.html { redirect_to @muni_path, notice: 'Municipality was successfully updated.' }
         else
           format.html { render :edit }
         end
@@ -18,10 +18,15 @@ module Admin
 
     def set_municipality
       @municipality = Municipality.find(params[:id])
+      @muni_path    = path_for @municipality
     end
 
     def municipality_params
       params.require(:municipality).permit(:csv)
+    end
+
+    def path_for(municipality)
+      "/#{municipality.type.pluralize.downcase}/#{municipality.id}"
     end
   end
 end
