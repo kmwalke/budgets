@@ -13,6 +13,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :name %>
+
   <div class="field">
     <%= form.label :csv, autofocus: 'autofocus' %>
     <%= form.file_field :csv %>
@@ -20,6 +22,6 @@
 
   <div class="actions">
     <%= form.submit 'Update Budget' %>
-    <%= link_to 'Back', @muni_path %>
   </div>
 <% end -%>
+<%= link_to 'Back', @muni_path %>
