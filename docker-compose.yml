@@ -14,6 +14,9 @@ x-budgets-common:
   tty: true        # docker run -t
   environment:
     USERNAME: $USER
+    AWS_BUCKET: ${AWS_BUCKET}
+    AWS_KEY: ${AWS_KEY}
+    AWS_SECRET_KEY: ${AWS_SECRET_KEY}
     DB_DEV: ${DB_DEV}
     DB_HOST: ${DB_HOST}
     DB_TEST: ${DB_TEST}
