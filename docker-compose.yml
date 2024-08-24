@@ -14,11 +14,15 @@ x-budgets-common:
   tty: true        # docker run -t
   environment:
     USERNAME: $USER
+    AWS_BUCKET: ${AWS_BUCKET}
+    AWS_KEY: ${AWS_KEY}
+    AWS_SECRET_KEY: ${AWS_SECRET_KEY}
     DB_DEV: ${DB_DEV}
     DB_HOST: ${DB_HOST}
     DB_TEST: ${DB_TEST}
     DB_PROD: ${DB_PROD}
     DB_USERNAME: ${DB_USERNAME}
+    REDIS_URL: redis://redis:6379
     SMARTY_AUTH_ID: ${SMARTY_AUTH_ID}
     SMARTY_AUTH_TOKEN: ${SMARTY_AUTH_TOKEN}
 
@@ -38,6 +42,20 @@ services:
       - budgets-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./tmp/redis_data:/var/lib/redis/data
+
+  sidekiq:
+    <<: *budgets-common
+    command: bundle exec sidekiq -r . -C config/sidekiq.yml
+    depends_on:
+      - db
+      - redis
+      - web
 
 
 volumes:

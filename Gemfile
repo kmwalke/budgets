@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.4'
 
+gem 'aws-sdk-s3'
 gem 'bcrypt'
 gem 'bootsnap'
 gem 'devise'
@@ -12,7 +13,9 @@ gem 'jbuilder'
 gem 'pg'
 gem 'puma'
 gem 'rails'
+gem 'redis'
 gem 'sass-rails'
+gem 'sidekiq'
 gem 'turbo-rails'
 
 group :development, :test do

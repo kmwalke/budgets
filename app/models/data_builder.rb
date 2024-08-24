@@ -1,11 +1,28 @@
-class DevDataBuilder
+class DataBuilder
   def self.build_data
     new.send(:gen_data)
+  end
+
+  def self.build_dev_data
+    new.send(:gen_dev_data)
   end
 
   private
 
   def gen_data
+    warn 'GENERATING REQUIRED BOOTSTRAP DATA'
+    MuniType::TYPES.each do |type|
+      MuniType.find_or_create_by!(name: type)
+    end
+
+    MuniStatus::STATUSES.each do |status|
+      MuniStatus.find_or_create_by!(name: status)
+    end
+
+    Federal.find_or_create_by!(name: 'USA', status: MuniStatus::LIVE)
+  end
+
+  def gen_dev_data
     warn 'GENERATING DEVELOPMENT SEED DATA'
     build_municipalities
     build_departments

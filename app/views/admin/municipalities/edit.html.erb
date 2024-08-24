@@ -1,0 +1,27 @@
+<h1>New Budget for <%= @municipality.name %></h1>
+
+<%= form_for(:municipality, url: admin_municipality_path(@municipality), method: :patch, html: { multipart: true, autocomplete: 'off' }) do |form| -%>
+  <% if @municipality.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@municipality.errors.count, "error") %> prohibited this municipality from being saved:</h2>
+
+      <ul>
+        <% @municipality.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :name %>
+
+  <div class="field">
+    <%= form.label :csv, autofocus: 'autofocus' %>
+    <%= form.file_field :csv %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Budget' %>
+  </div>
+<% end -%>
+<%= link_to 'Back', @muni_path %>
