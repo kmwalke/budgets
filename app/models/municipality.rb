@@ -14,4 +14,8 @@ class Municipality < ApplicationRecord
   def live?
     status == MuniStatus::LIVE
   end
+
+  def import_csv
+    BudgetImporter.import(self)
+  end
 end
