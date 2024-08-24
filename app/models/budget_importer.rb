@@ -10,16 +10,15 @@ class BudgetImporter
 
     Department.where(municipality:).delete_all
 
-    departments     = []
     municipality_id = municipality.id
 
-    CSV.parse(municipality.csv.download, headers: true) do |row|
-      departments << {
-        name: row['department'],
-        municipality_id:
-      }
-    end
-
-    Department.insert_all(departments.uniq)
+    Department.insert_all(
+      CSV.parse(municipality.csv.download, headers: true).map do |row|
+        {
+          name: row['department'],
+          municipality_id:
+        }
+      end.uniq
+    )
   end
 end
