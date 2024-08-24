@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.4'
 
+gem 'aws-sdk-s3'
 gem 'bcrypt'
 gem 'bootsnap'
 gem 'devise'
 gem 'faraday'
-gem 'google-cloud-storage'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
