@@ -7,7 +7,7 @@
     }
   ],
   "scripts": {
-    "postdeploy": "./script/postdeploy.sh"
+    "heroku-postbuild": "./script/postdeploy.sh"
   },
   "addons": [
     "papertrail",
