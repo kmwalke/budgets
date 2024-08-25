@@ -3,7 +3,7 @@ class Department < ApplicationRecord
 
   belongs_to :municipality
 
-  has_many :budgets, dependent: :destroy
+  has_many :budgets
 
   def latest_budget
     budgets&.order(year: :desc)&.first

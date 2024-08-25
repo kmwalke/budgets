@@ -4,7 +4,7 @@
     <legend><%= department.latest_budget&.year %> Budget</legend>
     <span>Total: <%= currency department.latest_budget&.amount %></span>
     <ul>
-      <% department.latest_budget&.line_items&.order(amount: :desc)&.each do |line_item| -%>
+      <% department.latest_budget&.line_items&.each do |line_item| -%>
         <li>
           <%= line_item.name %> : <%= currency line_item.amount %>
         </li>
