@@ -3,7 +3,7 @@ class Municipality < ApplicationRecord
   validates :type, presence: true
   validates :status, presence: true
 
-  has_many :departments
+  has_many :departments, dependent: :destroy
 
   has_one_attached :csv
 
@@ -13,5 +13,9 @@ class Municipality < ApplicationRecord
 
   def live?
     status == MuniStatus::LIVE
+  end
+
+  def import_csv
+    BudgetImporter.import(self)
   end
 end
