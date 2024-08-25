@@ -6,9 +6,11 @@ class BudgetImporter
   end
 
   def initialize(municipality)
+    return unless municipality&.csv&.attached?
+
     @municipality          = municipality
-    @csv_data              = CSV.parse(@municipality.csv.download, headers: true)
     @municipality_id       = @municipality.id
+    @csv_data              = CSV.parse(@municipality.csv.download, headers: true)
     @department_budget_map = {}
   end
 
@@ -16,7 +18,7 @@ class BudgetImporter
 
   # TODO: setup DB constraints as this is a raw data importer
   def import_csv
-    return nil unless @municipality.csv.attached?
+    return nil unless @municipality&.csv&.attached?
 
     delete_old_records
 
