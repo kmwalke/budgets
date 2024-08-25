@@ -3,29 +3,16 @@ class BudgetImporter
     new.send(:import_csv, municipality)
   end
 
-  def self.performant_import(municipality)
-    new.send(:draft_performant_import_csv, municipality)
-  end
-
   private
 
+  # TODO refactor for readability
+  # TODO Performance pass
+  # TODO setup DB constraints as this is a raw data importer
   def import_csv(municipality)
     return nil unless municipality.csv.attached?
 
-    Department.where(municipality:).destroy_all
-
-    csv_data = CSV.parse(municipality.csv.download, headers: true)
-
-    csv_data.each do |row|
-      dept   = Department.find_or_create_by(name: row['department'], municipality:)
-      budget = Budget.find_or_create_by(department: dept, year: row['year'].to_i)
-      LineItem.find_or_create_by(name: row['line_item'], amount: row['amount'].to_i, budget:)
-    end
-  end
-
-  def draft_performant_import_csv(municipality)
-    return nil unless municipality.csv.attached?
-
+    LineItem.joins(budget: :department).where(department: { municipality_id: municipality.id }).delete_all
+    Budget.joins(:department).where(department: { municipality: }).delete_all
     Department.where(municipality:).delete_all
 
     csv_data        = CSV.parse(municipality.csv.download, headers: true)
