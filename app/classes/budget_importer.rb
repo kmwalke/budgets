@@ -16,7 +16,7 @@ class BudgetImporter
 
   private
 
-  # TODO: setup DB constraints as this is a raw data importer
+  # TODO: confirm DB constraints as this is a raw data importer
   def import_csv
     return nil unless @municipality&.csv&.attached?
 
