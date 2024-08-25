@@ -1,66 +1,94 @@
 class BudgetImporter
+  attr_accessor :municipality, :municipality_id, :csv_data, :department_budget_map
+
   def self.import(municipality)
-    new.send(:import_csv, municipality)
+    new(municipality).send(:import_csv)
+  end
+
+  def initialize(municipality)
+    @municipality          = municipality
+    @csv_data              = CSV.parse(@municipality.csv.download, headers: true)
+    @municipality_id       = @municipality.id
+    @department_budget_map = {}
   end
 
   private
 
-  # TODO: refactor for readability
-  # TODO: Performance pass
   # TODO: setup DB constraints as this is a raw data importer
-  def import_csv(municipality)
-    return nil unless municipality.csv.attached?
+  def import_csv
+    return nil unless @municipality.csv.attached?
 
-    LineItem.joins(budget: :department).where(department: { municipality_id: municipality.id }).delete_all
+    delete_old_records
+
+    import_departments
+    map_department_ids
+
+    import_budgets
+    map_budget_ids
+
+    import_line_items
+
+    true
+  end
+
+  def delete_old_records
+    LineItem.joins(budget: :department).where(department: { municipality_id: @municipality_id }).delete_all
     Budget.joins(:department).where(department: { municipality: }).delete_all
     Department.where(municipality:).delete_all
+  end
 
-    csv_data        = CSV.parse(municipality.csv.download, headers: true)
-    municipality_id = municipality.id
-
+  def import_departments
     Department.insert_all(
-      csv_data.map do |row|
+      @csv_data.map do |row|
         {
           name: row['department'],
           municipality_id:
         }
       end.uniq
     )
+  end
 
-    department_info = {}
-
-    municipality.departments.map do |dept|
-      department_info[dept.name] = {
+  def map_department_ids
+    @municipality.departments.map do |dept|
+      @department_budget_map[dept.name] = {
         dept_id: dept.id
       }
     end
+  end
 
+  def import_budgets
     Budget.insert_all(
-      csv_data.map do |row|
+      @csv_data.map do |row|
         {
           year: row['year'],
-          department_id: department_info[row['department']][:dept_id]
+          department_id: @department_budget_map[row['department']][:dept_id]
         }
       end.uniq
     )
+  end
 
-    department_info.each do |dept_name, dept_hash|
-      department_info[dept_name] = {
+  def map_budget_ids
+    @department_budget_map.each do |dept_name, dept_hash|
+      @department_budget_map[dept_name] = {
         dept_id: dept_hash[:dept_id],
-        budget_id: Budget.where(department_id: dept_hash[:dept_id]).order(year: :desc).first.id
+        budget_id: latest_budget_id(dept_hash[:dept_id])
       }
     end
+  end
 
+  def latest_budget_id(department_id)
+    Budget.where(department_id:).order(year: :desc).first.id
+  end
+
+  def import_line_items
     LineItem.insert_all(
-      csv_data.map do |row|
+      @csv_data.map do |row|
         {
           amount: row['amount'],
           name: row['line_item'],
-          budget_id: department_info[row['department']][:budget_id]
+          budget_id: @department_budget_map[row['department']][:budget_id]
         }
       end
     )
-
-    true
   end
 end

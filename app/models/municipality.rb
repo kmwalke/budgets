@@ -15,10 +15,6 @@ class Municipality < ApplicationRecord
     status == MuniStatus::LIVE
   end
 
-  def import_csv
-    BudgetImporter.import(self)
-  end
-
   private
 
   def fetch_line_items
