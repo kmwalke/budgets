@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
     departments.id,
     budgets.id as budget_id,
     budgets.year as year,
-      (
-        select sum(amount) as amount
-        from line_items
-        where budget_id = budgets.id
-      )
+    (
+      select sum(line_items.amount)
+      from line_items
+      where budget_id = budgets.id
+    ) as amount
 
     from departments
     join budgets on budgets.department_id = departments.id

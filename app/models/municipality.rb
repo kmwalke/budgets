@@ -8,7 +8,7 @@ class Municipality < ApplicationRecord
   has_one_attached :csv
 
   def amount
-    departments&.map(&:amount)&.sum || 0
+    fetch_line_items.pluck(:amount).sum
   end
 
   def live?
@@ -17,5 +17,11 @@ class Municipality < ApplicationRecord
 
   def import_csv
     BudgetImporter.import(self)
+  end
+
+  private
+
+  def fetch_line_items
+    LineItem.where(municipality: { id: }).joins(budget: { department: :municipality })
   end
 end
