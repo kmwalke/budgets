@@ -42,6 +42,7 @@ Rails/RedundantPresenceValidationOnBelongsTo:
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/models/data_builder.rb'
+    - 'app/models/budget_importer.rb'
 
 RSpec/IndexedLet:
   Enabled: false
