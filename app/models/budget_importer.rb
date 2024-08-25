@@ -3,6 +3,10 @@ class BudgetImporter
     new.send(:import_csv, municipality)
   end
 
+  def self.performant_import(municipality)
+    new.send(:draft_performant_import_csv, municipality)
+  end
+
   private
 
   def import_csv(municipality)
@@ -39,19 +43,37 @@ class BudgetImporter
     department_info = {}
 
     municipality.departments.map do |dept|
-      department_info[dept.name] = dept.id
+      department_info[dept.name] = {
+        dept_id: dept.id
+      }
     end
 
     Budget.insert_all(
       csv_data.map do |row|
         {
           year: row['year'],
-          department_id: department_info[row['department']]
+          department_id: department_info[row['department']][:dept_id]
         }
       end.uniq
     )
 
-    municipality.departments.map do |dept|
+    department_info.each do |dept_name, dept_hash|
+      department_info[dept_name] = {
+        dept_id: dept_hash[:dept_id],
+        budget_id: Budget.where(department_id: dept_hash[:dept_id]).order(year: :desc).first.id
+      }
     end
+
+    LineItem.insert_all(
+      csv_data.map do |row|
+        {
+          amount: row['amount'],
+          name: row['line_item'],
+          budget_id: department_info[row['department']][:budget_id]
+        }
+      end
+    )
+
+    true
   end
 end
