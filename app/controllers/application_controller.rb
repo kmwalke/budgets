@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     departments.name,
     departments.id,
     budgets.id as budget_id,
+    budgets.year as year,
       (
         select sum(amount) as amount
         from line_items

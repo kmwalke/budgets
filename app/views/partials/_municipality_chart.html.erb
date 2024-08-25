@@ -13,16 +13,16 @@
     <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
   </div>
 <% end -%>
-<% if user_signed_in? || municipality.live? -%>
+<% if @ordered_departments.any? && (user_signed_in? || municipality.live?) -%>
   <div class="list-chart">
     <fieldset>
 
-      <legend><%= @ordered_departments&.first&.latest_budget&.year %> Budget</legend>
-      <span>Total: <%= currency municipality.amount %></span>
+      <legend><%= @ordered_departments.first[:year] %> Budget</legend>
+<!--      <span>Total: <%#= currency municipality.amount %></span>-->
       <ul>
         <% @ordered_departments.each do |department| -%>
           <li>
-            <%= link_to department.name, department %> : <%= currency department.amount %>
+            <%= link_to department.name, department %> : <%= currency department[:amount] %>
           </li>
         <% end %>
       </ul>
