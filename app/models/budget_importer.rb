@@ -5,9 +5,9 @@ class BudgetImporter
 
   private
 
-  # TODO refactor for readability
-  # TODO Performance pass
-  # TODO setup DB constraints as this is a raw data importer
+  # TODO: refactor for readability
+  # TODO: Performance pass
+  # TODO: setup DB constraints as this is a raw data importer
   def import_csv(municipality)
     return nil unless municipality.csv.attached?
 
