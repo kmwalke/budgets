@@ -3,12 +3,13 @@
 
     <legend><%= department.latest_budget&.year %> Budget</legend>
     <span>Total: <%= currency department.latest_budget&.amount %></span>
-    <ul>
+    <table>
       <% department.latest_budget&.line_items&.order(amount: :desc)&.each do |line_item| -%>
-        <li>
-          <%= line_item.name %> : <%= currency line_item.amount %>
-        </li>
+        <tr>
+          <td><%= line_item.name %></td>
+          <td><%= currency line_item.amount %></td>
+        </tr>
       <% end %>
-    </ul>
+    </table>
   </fieldset>
 </div>
