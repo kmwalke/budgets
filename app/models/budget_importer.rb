@@ -8,6 +8,20 @@ class BudgetImporter
   def import_csv(municipality)
     return nil unless municipality.csv.attached?
 
+    Department.where(municipality:).destroy_all
+
+    csv_data = CSV.parse(municipality.csv.download, headers: true)
+
+    csv_data.each do |row|
+      dept   = Department.find_or_create_by(name: row['department'], municipality:)
+      budget = Budget.find_or_create_by(department: dept, year: row['year'].to_i)
+      LineItem.find_or_create_by(name: row['line_item'], amount: row['amount'].to_i, budget:)
+    end
+  end
+
+  def draft_performant_import_csv(municipality)
+    return nil unless municipality.csv.attached?
+
     Department.where(municipality:).delete_all
 
     csv_data        = CSV.parse(municipality.csv.download, headers: true)
@@ -36,5 +50,8 @@ class BudgetImporter
         }
       end.uniq
     )
+
+    municipality.departments.map do |dept|
+    end
   end
 end
