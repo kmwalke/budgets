@@ -444,6 +444,7 @@ DEPENDENCIES
   bootsnap
   byebug
   capybara
+  csv
   devise
   factory_bot_rails
   faraday
