@@ -10,6 +10,12 @@ class Department < ApplicationRecord
   end
 
   def amount
-    latest_budget&.amount || 0
+    fetch_line_items.pluck(:amount).sum
+  end
+
+  private
+
+  def fetch_line_items
+    LineItem.where(department: { id: }).joins(budget: :department)
   end
 end

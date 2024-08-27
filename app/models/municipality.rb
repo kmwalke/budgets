@@ -8,10 +8,16 @@ class Municipality < ApplicationRecord
   has_one_attached :csv
 
   def amount
-    departments&.map(&:amount)&.sum || 0
+    fetch_line_items.pluck(:amount).sum
   end
 
   def live?
     status == MuniStatus::LIVE
+  end
+
+  private
+
+  def fetch_line_items
+    LineItem.where(municipality: { id: }).joins(budget: { department: :municipality })
   end
 end

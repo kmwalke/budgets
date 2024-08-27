@@ -31,6 +31,7 @@ RSpec.describe 'County' do
 
   it 'links to a department' do
     dept = create(:department, municipality: @county)
+    create(:line_item, budget: create(:budget, department: dept))
 
     visit county_path(@county)
     click_on dept.name
