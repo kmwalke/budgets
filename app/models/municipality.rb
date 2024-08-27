@@ -3,7 +3,7 @@ class Municipality < ApplicationRecord
   validates :type, presence: true
   validates :status, presence: true
 
-  has_many :departments, dependent: :destroy
+  has_many :departments
 
   has_one_attached :csv
 

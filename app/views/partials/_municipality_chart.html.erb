@@ -13,7 +13,7 @@
     <%= link_to 'Upload Budget CSV', edit_admin_municipality_path(municipality) %>
   </div>
 <% end -%>
-<% if @ordered_departments.any? && (user_signed_in? || municipality.live?) -%>
+<% if user_signed_in? || municipality.live? -%>
   <div class="list-chart">
     <fieldset>
 
