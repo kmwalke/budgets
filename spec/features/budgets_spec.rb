@@ -67,11 +67,6 @@ RSpec.describe 'Budget' do
 
       expect(page).to have_content(draft_budget.year)
     end
-
-    it 'triggers an import on attaching a csv', skip: 'not implemented' do
-      draft_budget.csv.attach('csv')
-      expect(true).to be_nil
-    end
   end
 end
 
