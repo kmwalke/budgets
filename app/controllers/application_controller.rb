@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless user_signed_in?
   end
 
-  def ordered_departments(municipality)
-    Department.find_by_sql(ordered_departments_sql(municipality.id))
-  end
-
   private
 
   def catch_errors(&)

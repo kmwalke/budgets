@@ -1,5 +1,5 @@
 <ul>
-  <% municipalities.order(:name).each do |municipality| -%>
+  <% municipalities.each do |municipality| -%>
     <li><%= link_to municipality.name, municipality%></li>
   <% end %>
 </ul>

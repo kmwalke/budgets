@@ -3,7 +3,7 @@ class Budget < ApplicationRecord
 
   belongs_to :department
 
-  has_many :line_items, dependent: :destroy
+  has_many :line_items
 
   def amount
     line_items&.map(&:amount)&.sum || 0
