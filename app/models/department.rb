@@ -3,13 +3,19 @@ class Department < ApplicationRecord
 
   belongs_to :municipality
 
-  has_many :budgets
+  has_many :budgets, dependent: :destroy
 
   def latest_budget
     budgets&.order(year: :desc)&.first
   end
 
   def amount
-    latest_budget&.amount || 0
+    fetch_line_items.pluck(:amount).sum
+  end
+
+  private
+
+  def fetch_line_items
+    LineItem.where(department: { id: }).joins(budget: :department)
   end
 end

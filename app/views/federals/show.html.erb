@@ -2,6 +2,6 @@
   <h1>
     <%= @federal.name %>
   </h1>
-  <%= render 'partials/municipality_chart', municipality: @federal %>
+  <%= render 'partials/municipality_chart', municipality: @federal, ordered_departments: @ordered_departments %>
   <%= render 'partials/municipality_list', municipalities: @federal&.states %>
 <% end -%>
