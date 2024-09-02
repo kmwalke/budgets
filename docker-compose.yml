@@ -22,6 +22,7 @@ x-budgets-common:
     DB_TEST: ${DB_TEST}
     DB_PROD: ${DB_PROD}
     DB_USERNAME: ${DB_USERNAME}
+    DB_PASSWORD: ${DB_PASSWORD}
     REDIS_URL: redis://redis:6379
     SMARTY_AUTH_ID: ${SMARTY_AUTH_ID}
     SMARTY_AUTH_TOKEN: ${SMARTY_AUTH_TOKEN}
@@ -37,11 +38,13 @@ services:
       - db
 
   db:
-    image: postgres:11.5
+    image: postgres
     volumes:
       - budgets-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
   redis:
     image: redis:7-alpine
     ports:

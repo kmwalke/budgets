@@ -1,5 +1,5 @@
 #!/bin/bash
-psql -h $DB_HOST -d $DB_DEV -U $DB_USERNAME -c 'SELECT name FROM muni_types LIMIT 1' & PID=$!
+PGPASSWORD=password psql -h $DB_HOST -d $DB_DEV -U $DB_USERNAME -c 'SELECT name FROM muni_types LIMIT 1' & PID=$!
 
 wait $PID
 
