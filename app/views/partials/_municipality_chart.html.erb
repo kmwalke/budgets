@@ -14,19 +14,35 @@
   </div>
 <% end -%>
 <% if @ordered_departments.any? && (user_signed_in? || municipality.live?) -%>
-  <div class="list-chart">
+  <div class="pie-chart">
     <fieldset>
 
       <legend><%= @ordered_departments.first[:year] %> Budget</legend>
       <span>Total: <%= currency municipality.amount %></span>
-      <table>
+      <ul>
         <% @ordered_departments.each do |department| -%>
-          <tr>
-            <td><%= link_to department.name, department %></td>
-            <td><%= currency department[:amount] %></td>
-          </tr>
+          <li>
+            <%= link_to department.name, department %>:
+            <%= currency department[:amount] %>   |
+            <%= percentage department[:amount], municipality.amount %>
+          </li>
         <% end %>
-      </table>
+      </ul>
     </fieldset>
   </div>
+  <!--  <div class="list-chart">-->
+  <!--    <fieldset>-->
+
+  <!--      <legend><%#= @ordered_departments.first[:year] %> Budget</legend>-->
+  <!--      <span>Total: <%#= currency municipality.amount %></span>-->
+  <!--      <table>-->
+  <%# @ordered_departments.each do |department| -%>
+  <!--          <tr>-->
+  <!--            <td><%#= link_to department.name, department %></td>-->
+  <!--            <td><%#= currency department[:amount] %></td>-->
+  <!--          </tr>-->
+  <%# end %>
+  <!--      </table>-->
+  <!--    </fieldset>-->
+  <!--  </div>-->
 <% end -%>
