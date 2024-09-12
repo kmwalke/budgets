@@ -14,14 +14,7 @@
   </div>
 <% end -%>
 <% if @ordered_departments.any? && (user_signed_in? || municipality.live?) -%>
-  <% dept_info = {} -%>
-  <% @ordered_departments.each do |dept| -%>
-    <% dept_info[dept.name] = dept.amount  %>
-  <% end %>
-
-  <%= pie_chart dept_info %>
-
-  <div class="pie-chart">
+  <div class="bar-chart">
     <fieldset>
 
       <legend><%= @ordered_departments.first[:year] %> Budget</legend>
