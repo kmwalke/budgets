@@ -18,13 +18,16 @@
     <fieldset>
 
       <legend><%= @ordered_departments.first[:year] %> Budget</legend>
-      <span>Total: <%= currency municipality.amount %></span>
+      <span class="total">Total: <%= currency municipality.amount %></span>
       <ul>
         <% @ordered_departments.each do |department| -%>
           <li>
-            <%= link_to department.name, department %>:
-            <%= currency department[:amount] %>   |
-            <%= percentage department[:amount], municipality.amount %>
+            <div class="bar" style="line-height: <%= percentage department[:amount], municipality.amount %>">
+              <%= currency department[:amount] %>
+            </div>
+            <span class="name">
+              <%= link_to department.name, department %>
+            </span>
           </li>
         <% end %>
       </ul>
