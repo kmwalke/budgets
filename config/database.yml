@@ -10,15 +10,13 @@ development:
   username: <%= ENV["DB_USERNAME"] %>
   host: <%= ENV["DB_HOST"] %>
   database: <%= ENV["DB_DEV"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
 
 test:
   <<: *default
   username: <%= ENV["DB_USERNAME"] %>
   host: <%= ENV["DB_HOST"] %>
   database: <%= ENV["DB_TEST"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
 
 production:
   <<: *default
-  database: <%= ENV["DB_PROD"] %>
+  database: budgets_prod
