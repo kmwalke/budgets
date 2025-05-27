@@ -13,19 +13,14 @@ x-budgets-common:
   stdin_open: true # docker run -i
   tty: true        # docker run -t
   environment:
-    USERNAME: $USER
-    AWS_BUCKET: ${AWS_BUCKET}
-    AWS_KEY: ${AWS_KEY}
-    AWS_SECRET_KEY: ${AWS_SECRET_KEY}
-    DB_DEV: ${DB_DEV}
-    DB_HOST: ${DB_HOST}
-    DB_TEST: ${DB_TEST}
-    DB_PROD: ${DB_PROD}
-    DB_USERNAME: ${DB_USERNAME}
-    DB_PASSWORD: ${DB_PASSWORD}
+    DB_DEV: budgets-development
+    DB_HOST: db
+    DB_TEST: budgets-test
+    DB_USERNAME: postgres
+    GOOGLE_API_KEY: ${GOOGLE_API_KEY}
     REDIS_URL: redis://redis:6379
-    SMARTY_AUTH_ID: ${SMARTY_AUTH_ID}
-    SMARTY_AUTH_TOKEN: ${SMARTY_AUTH_TOKEN}
+    XERO_ID: ${XERO_ID}
+    XERO_SECRET: ${XERO_SECRET}
 
 
 services:
@@ -38,28 +33,11 @@ services:
       - db
 
   db:
-    image: postgres
+    image: postgres:11.5
     volumes:
       - budgets-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - ./tmp/redis_data:/var/lib/redis/data
-
-  sidekiq:
-    <<: *budgets-common
-    command: bundle exec sidekiq -r . -C config/sidekiq.yml
-    depends_on:
-      - db
-      - redis
-      - web
-
 
 volumes:
   budgets-data:

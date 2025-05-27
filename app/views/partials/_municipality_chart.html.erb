@@ -14,19 +14,38 @@
   </div>
 <% end -%>
 <% if @ordered_departments.any? && (user_signed_in? || municipality.live?) -%>
-  <div class="list-chart">
+  <div class="bar-chart">
     <fieldset>
 
       <legend><%= @ordered_departments.first[:year] %> Budget</legend>
-      <span>Total: <%= currency municipality.amount %></span>
-      <table>
+      <span class="total">Total: <%= currency municipality.amount %></span>
+      <ul>
         <% @ordered_departments.each do |department| -%>
-          <tr>
-            <td><%= link_to department.name, department %></td>
-            <td><%= currency department[:amount] %></td>
-          </tr>
+          <li>
+            <div class="bar" style="line-height: <%= percentage department[:amount], municipality.amount %>">
+              <%= currency department[:amount] %>
+            </div>
+            <span class="name">
+              <%= link_to department.name, department %>
+            </span>
+          </li>
         <% end %>
-      </table>
+      </ul>
     </fieldset>
   </div>
+  <!--  <div class="list-chart">-->
+  <!--    <fieldset>-->
+
+  <!--      <legend><%#= @ordered_departments.first[:year] %> Budget</legend>-->
+  <!--      <span>Total: <%#= currency municipality.amount %></span>-->
+  <!--      <table>-->
+<%# @ordered_departments.each do |department| -%>
+  <!--          <tr>-->
+  <!--            <td><%#= link_to department.name, department %></td>-->
+  <!--            <td><%#= currency department[:amount] %></td>-->
+  <!--          </tr>-->
+<%# end %>
+  <!--      </table>-->
+  <!--    </fieldset>-->
+  <!--  </div>-->
 <% end -%>
