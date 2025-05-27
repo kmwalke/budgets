@@ -34,7 +34,7 @@ module Admin
     end
 
     def municipality_params
-      params.expect(municipality: [:csv])
+      params.require(:municipality).permit(:csv)
     end
 
     def path_for(municipality)
