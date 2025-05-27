@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def percentage(part, total)
-    number_to_percentage((part / total * 100), precision: 0, format: '%n')
+    number_to_percentage(part / total * 100, precision: 0, format: '%n')
   end
 end
